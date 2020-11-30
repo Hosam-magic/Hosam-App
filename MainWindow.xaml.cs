@@ -20,9 +20,12 @@ namespace Hosam_App
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+            this.ResizeMode = System.Windows.ResizeMode.NoResize;
+
         }
     }
 }

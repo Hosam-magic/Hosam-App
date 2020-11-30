@@ -30,8 +30,6 @@ namespace Hosam_App
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow = Window.GetWindow(this) as MainWindow;
-
-
             this._mainWindow.Main.Navigate(new Uri(V, UriKind.Relative));
         }
     }

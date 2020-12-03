@@ -43,7 +43,7 @@ namespace Hosam_App
             if (sec < 10)
             {
                 sec++;
-                LoadingNumber.Text = dispalyNumber.ToString();
+                LoadingNumber.Text = " " +dispalyNumber.ToString()+"%";
                 _mainWindow = Window.GetWindow(this) as MainWindow;
 
             }

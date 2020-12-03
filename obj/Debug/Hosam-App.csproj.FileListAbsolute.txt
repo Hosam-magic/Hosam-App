@@ -74,3 +74,5 @@ C:\Users\ian\Documents\Hosim-app\obj\Debug\Hosam-App.pdb
 C:\Users\ian\Documents\Hosim-app\obj\Debug\Home.g.cs
 C:\Users\ian\Documents\Hosim-app\obj\Debug\Home.baml
 C:\Users\ian\Documents\Hosim-app\obj\Debug\Hosam-App.csprojAssemblyReference.cache
+C:\Users\ian\Documents\Hosim-app\obj\Debug\Adjust\adjust_Ctrl.g.cs
+C:\Users\ian\Documents\Hosim-app\obj\Debug\Adjust\adjust_Ctrl.baml

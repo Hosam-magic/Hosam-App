@@ -53,15 +53,15 @@
 
         <materialDesign:PopupBox
                 Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                PlacementMode="BottomAndAlignCentres"
+                PlacementMode="BottomAndAlignLeftEdges"
                 ToolTipService.Placement="Right"
                 ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
                 Opened="PopupBox_OnOpened"
                 Closed="PopupBox_OnClosed" Grid.Column="0"
                 Grid.Row="0" VerticalAlignment="Top"
                 HorizontalAlignment="Left"
-                PopupMode="MouseOverEager" Margin="36,0,0,0"
-                Background="White" BorderBrush="{x:Null}">
+                PopupMode="MouseOverEager"
+                Margin="30,40,0,0" Background="White" BorderBrush="{x:Null}">
 
             <materialDesign:PopupBox.ToggleContent>
                 <materialDesign:PackIcon Kind="Menu"

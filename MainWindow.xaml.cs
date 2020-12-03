@@ -27,5 +27,10 @@ namespace Hosam_App
             this.ResizeMode = System.Windows.ResizeMode.NoResize;
 
         }
+
+        private void Main_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

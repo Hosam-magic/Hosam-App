@@ -12,7 +12,8 @@
                 <Frame x:Name="Main"
                         Source="Login\Login_Intro.xaml"
                         Width="600" Height="900"
-                        NavigationUIVisibility="Hidden" />
+                        NavigationUIVisibility="Hidden"
+                    Loaded="Main_Loaded" />
         </Viewbox>
     </Grid>
 </Window>

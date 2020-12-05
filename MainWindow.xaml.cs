@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Hosam_App.DTO;
+using Newtonsoft.Json;
+
 
 namespace Hosam_App
 {
@@ -20,9 +13,35 @@ namespace Hosam_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool isGameStart = false;
+        public static Timer gobalTimer;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+        public void MainFromLoad() {
+
+            gobalTimer.AutoReset = true;
+            gobalTimer.Interval = 3000;
+            gobalTimer.Elapsed += gobalTimer_Elapsed;
+        }
+        private static void gobalTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            searchGame();
+        }
+        public static void searchGame() {
+
+            if (!isGameStart)
+            {
+                string jsonString = System.IO.File.ReadAllText("");
+                SupportGamesData data = JsonConvert.DeserializeObject<SupportGamesData>(jsonString);
+           
+                Console.WriteLine();
+                Process[] processlist = Process.GetProcesses();
+            }
+           
+        }
+
     }
 }

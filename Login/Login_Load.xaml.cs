@@ -51,7 +51,6 @@ namespace Hosam_App
                 _mainWindow.Width = 1200;
                 _mainWindow.Height = 900;
                 _mainWindow.viewbox.Width = 1200;
-                
                 _mainWindow.Main.Width = 1200;
                 _mainWindow.Main.Height = 900;
                 this._mainWindow.Main.Navigate(new Uri("Home.xaml", UriKind.Relative));

@@ -1,9 +1,5 @@
-# debug 忽視
 Debug
-
-#Nuget套建忽視
 packages
-
-#無用的忽視
 .vs/
 obj/
+bin

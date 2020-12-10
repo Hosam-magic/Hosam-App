@@ -1,0 +1,94 @@
+﻿<Page x:Class="Hosam_App.Adjust.adjust_Navigator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Hosam_App.Adjust"
+        mc:Ignorable="d" d:DesignHeight="900"
+        d:DesignWidth="212" Title="adjust_Navigator">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Adjust" Foreground="White"
+                FontSize="40" VerticalAlignment="Center"
+                HorizontalAlignment="Center" />
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="設定槽" FontSize="36" Grid.Row="0"
+                    Foreground="White"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+            <Button
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Width="150"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                    materialDesign:RippleAssist.IsDisabled="True"
+                    Grid.Row="1" Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="#DDFFFFFF">
+
+                Unnamed1
+            </Button>
+            <Button
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Width="150" Grid.Row="2"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                    materialDesign:RippleAssist.IsDisabled="True"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="#DDFFFFFF">
+                Unnamed2
+            </Button>
+            <Button
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    Width="150" Grid.Row="3"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+                    materialDesign:RippleAssist.IsDisabled="True"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="#DDFFFFFF">
+                Unnamed3
+            </Button>
+
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <materialDesign:PackIcon
+                    Kind="GamepadVariantOutline"
+                    Foreground="White" Width="40"
+                    Height="40" VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Column="0" />
+            <materialDesign:PackIcon Kind="HomeOutline"
+                    Foreground="White" Width="40"
+                    Height="40" VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Column="1" />
+            <materialDesign:PackIcon Kind="TuneVariant"
+                    Foreground="White" Width="40"
+                    Height="40" VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.Column="2" />
+        </Grid>
+    </Grid>
+</Page>

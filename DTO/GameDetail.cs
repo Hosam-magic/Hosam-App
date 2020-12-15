@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Hosam_App.DTO
 {
-    class GameDetail
+    public class GameDetail
     {
-        string viewName;
-        string gameName;
-        string path;
-        string driver;
+        public string viewName;
+        public string gameName;
+        public string path;
+        public string driver;
     }
 }

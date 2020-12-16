@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service\GameDetectService.cs" />
     <Page Include="Login\Login_Intro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

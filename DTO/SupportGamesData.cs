@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hosam_App.DTO
 {
-    public class SupportGamesData
+    public class SupportGames
     {
         public List<GameDetail> gameList;
     }

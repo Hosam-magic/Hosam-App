@@ -22,14 +22,12 @@ namespace Hosam_App
     /// </summary>
     public partial class Home : Page
     {
-
+        MainWindow _mainWindow =null;
         public Home()
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
+
 
         private void PopupBox_OnClosed(object sender, RoutedEventArgs e)
         {
@@ -39,6 +37,22 @@ namespace Hosam_App
         private void PopupBox_OnOpened(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Adjust_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow = Window.GetWindow(this) as MainWindow;
+           
+            this._mainWindow.Main.Navigate(new Uri("Adjust/adjust_Ctrl.xaml", UriKind.Relative));
+        }
+
+        private void Game_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            _mainWindow = Window.GetWindow(this) as MainWindow;
+
+            this._mainWindow.Main.Navigate(new Uri("Game/GameCtrl_Page.xaml", UriKind.Relative));
         }
     }
 }

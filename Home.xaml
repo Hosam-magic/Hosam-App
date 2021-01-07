@@ -32,26 +32,28 @@
                 VerticalAlignment="Center"
                 Stretch="UniformToFill" />
         <Button
+            x:Name="Adjust"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Width="200" Height="60"
                 ToolTip="Resource name: MaterialDesignRaisedButton"
                 Grid.Row="1" Grid.Column="0"
                 Background="{x:Null}" BorderBrush="{x:Null}"
-                Click="Button_Click">
+                Click="Adjust_Click">
 
             <TextBlock Text="Adjust" FontSize="40" />
         </Button>
-        <Button
+        <Button x:Name="Game"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Width="200" Height="60"
                 ToolTip="Resource name: MaterialDesignRaisedButton"
                 Grid.Row="1" Grid.Column="1"
-                Background="{x:Null}" BorderBrush="{x:Null}">
+                Background="{x:Null}" BorderBrush="{x:Null}"
+                Click="Game_Click">
 
             <TextBlock Text="Game" FontSize="40" />
         </Button>
 
-        <materialDesign:PopupBox
+       <materialDesign:PopupBox
                 Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                 PlacementMode="BottomAndAlignLeftEdges"
                 ToolTipService.Placement="Right"

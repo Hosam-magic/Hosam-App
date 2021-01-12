@@ -20,28 +20,33 @@ namespace Hosam_App.Service
             string jsonString = System.IO.File.ReadAllText(@"F:\game.txt");
             SupportGames supportGameData = JsonConvert.DeserializeObject<SupportGames>(jsonString);
 
-            Process[] processlist = Process.GetProcesses();
+             List<Process> processlist = Process.GetProcesses().ToList();
 
             bool isNeedUpdate = false;
 
             //檢查是否執行程序的名稱 = 支援的遊戲名稱 ，如果相同加到 List 中 
             foreach (GameDetail detail in supportGameData.gameList)
             {
-                foreach (Process process in processlist)
+                var findedProcess = processlist.Find(x => x.ProcessName.Contains(detail.gameName));
+
+                if (findedProcess != null)
                 {
-                    if (process.ProcessName.Contains(detail.gameName))
+                    //檢查起動列表內是否已經有同樣的APP，避免重複加入 (ex AC一次就啟動兩個 AssetoCorsa.exe)
+                    if (!gameStartList.Exists (x =>x.gameName == findedProcess.ProcessName))
                     {
-            
                         //檢查遊戲路徑不等於執行程序的路徑時進行更新，並標註為需要更新
-                        if (detail.path!= process.MainModule.FileName)
+                        if (detail.path != findedProcess.MainModule.FileName)
                         {
-                            detail.path = process.MainModule.FileName;
-                            isNeedUpdate = true ;
+                            detail.path = findedProcess.MainModule.FileName;
+                            isNeedUpdate = true;
                         }
 
                         gameStartList.Add(detail);
                     }
+
+                    
                 }
+
             }
 
             //如果有資料的更新才寫入txt

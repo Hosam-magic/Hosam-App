@@ -28,22 +28,30 @@ namespace Hosam_App
             Trace.WriteLine("AAA");
             
             gobalTimer.AutoReset = true;
-            gobalTimer.Interval = 500;
+            gobalTimer.Interval = 3000;
             gobalTimer.Elapsed += gobalTimer_Elapsed;
             gobalTimer.Start();
         }
         private static void gobalTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            List<GameDetail> a = getGameStartList();
-            if (a.Count == 0)
+            List<GameDetail> gameStartList = getGameStartList();
+            if (gameStartList.Count == 1)
             {
-                Trace.WriteLine("遊戲沒啟動");
-            }
-            else
-            {
-                Trace.WriteLine(a[0].viewName);
-                Trace.WriteLine(a[0].path);
+                Trace.WriteLine(gameStartList[0].viewName);
+                Trace.WriteLine(gameStartList[0].path);
                 Trace.WriteLine("end");
+            }
+            else if (gameStartList.Count > 1)
+            {
+                Trace.WriteLine("警告! 偵測起動一款以上的遊戲同時啟動，遊戲名稱如下");
+                foreach (GameDetail data in gameStartList)
+                {
+                    Trace.WriteLine(data.viewName);
+                }
+            }
+            else if (gameStartList.Count ==0 )
+            {
+                Trace.WriteLine("沒有任何遊戲沒啟動");
             }
  
         }

@@ -13,24 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hosam_App
+namespace Hosam_App.Game
 {
     /// <summary>
-    /// Login_Intro.xaml 的互動邏輯
+    /// Game_Library.xaml 的互動邏輯
     /// </summary>
-    public partial class Login_Intro : Page
+    public partial class Game_Library : Page
     {
-        private const string V = "Login/Login_Load.xaml";
-        MainWindow _mainWindow =null;
-        public Login_Intro()
+        public Game_Library()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void FilledComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _mainWindow = Window.GetWindow(this) as MainWindow;
-            this._mainWindow.Main.Navigate(new Uri(V, UriKind.Relative));
+
         }
     }
 }

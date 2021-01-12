@@ -23,6 +23,13 @@ namespace Hosam_App
         public MainWindow()
         {
             InitializeComponent();
+            this.ResizeMode = System.Windows.ResizeMode.NoResize;
+
+        }
+
+        private void Main_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
         public void Window_Loaded(Object sender ,RoutedEventArgs e) {
             Trace.WriteLine("AAA");

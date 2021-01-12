@@ -45,6 +45,7 @@
                     Text="Enter Your Email"
                     Foreground="Gray"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth5"
                     FontSize="24" Grid.Column="1"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"

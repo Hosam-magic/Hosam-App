@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Hosam_App.Logic.Gobal.GobalVariable;
+using Hosam_App.Logic.Service;
 
 namespace Hosam_App
 {
@@ -13,5 +16,18 @@ namespace Hosam_App
     /// </summary>
     public partial class App : Application
     {
+        GameDetectService gameDetectService = new GameDetectService();
+
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+
+            //GameDetectService.InitGamedataTxt();
+            Console.WriteLine("fsaddfsdfsadfsdfs");
+            GameDetectService.InitGamedataVariable();
+            Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
+            GameStatus.GameStatusList[0].gameName = "abc";
+            Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
+
+        }
     }
 }

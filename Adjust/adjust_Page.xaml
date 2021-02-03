@@ -18,20 +18,25 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="7*" />
             <RowDefinition Height=".8*" />
-            
         </Grid.RowDefinitions>
-        <TextBlock x:Name="title" Text="Unnamed1"
-                Grid.Row="0" Grid.Column="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center" FontSize="50" />
-        <materialDesign:PackIcon Kind="Pencil" Grid.Row="0"
-                Grid.Column="1" Width="40" Height="40"
-                VerticalAlignment="Center"
-                Margin="506,36,0,37" />
-        <Rectangle Width="500" Height="6" Grid.Row="0"
-                Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Center"
-                Fill="#FF9E9E9E" Margin="120,0,120,15" />
+        <Grid Grid.Column="1" x:Name="TitleGrid">
+            <TextBlock x:Name="title" Text="123" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    FontSize="50" />
+            <materialDesign:PackIcon Kind="Pencil"
+                    x:Name="icon" Width="40" Height="40" VerticalAlignment="Center"
+                    Margin="701,72,0,72"
+                    HorizontalAlignment="Stretch"
+                    RenderTransformOrigin="0.25,0.55" />
+            <Rectangle Width="500" Height="6" 
+                   
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Fill="#FF9E9E9E" Margin="120,0,120,15" />
+        </Grid>
+
+
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
@@ -39,7 +44,8 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Slider x:Name="Slider0" TickFrequency="5" 
+            <Slider x:Name="Slider_Strength"
+                    TickFrequency="5"
                     Orientation="Horizontal" Minimum="5"
                     Maximum="100" Value="55"
                     VerticalAlignment="Center" Grid.Row="0"
@@ -60,7 +66,7 @@
                     HorizontalAlignment="Right"
                     FontSize="30" />
 
-            <Slider x:Name="Slider1" TickFrequency="5"
+            <Slider x:Name="Slider_Smooth" TickFrequency="5"
                     Orientation="Horizontal" Minimum="5"
                     Maximum="100" Value="55"
                     VerticalAlignment="Center" Grid.Row="1"
@@ -83,7 +89,8 @@
                     HorizontalAlignment="Right"
                     FontSize="30" />
 
-            <Slider x:Name="Slider2" TickFrequency="5"
+            <Slider x:Name="Slider_Amplitude"
+                    TickFrequency="5"
                     Orientation="Horizontal" Minimum="5"
                     Maximum="100" Value="55"
                     VerticalAlignment="Center" Grid.Row="2"
@@ -115,7 +122,8 @@
                         materialDesign:ButtonAssist.CornerRadius="25"
                         ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
                         BorderBrush="{x:Null}"
-                        Background="#FF14CC00">
+                        Background="#FF14CC00"
+                        Click="Button_Click">
                     <TextBlock Text="儲存" FontSize="30" />
                 </Button>
             </Grid>

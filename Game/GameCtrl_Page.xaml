@@ -13,10 +13,10 @@
             <ColumnDefinition Width="7*" />
         </Grid.ColumnDefinitions>
         <Frame x:Name="Game_Navigation" Grid.Column="0"
-                Source="Game_Navigation.xaml"
+                Height="900" Width="212" Source=""
                 NavigationUIVisibility="Hidden" />
         <Frame x:Name="Game_Page" Grid.Column="1"
-                Source="Game_Library.xaml"
+                Height="900" Width="988" Source=""
                 NavigationUIVisibility="Hidden" />
 
     </Grid>

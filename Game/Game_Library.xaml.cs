@@ -25,9 +25,11 @@ namespace Hosam_App.Game
             InitializeComponent();
         }
 
-        private void FilledComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AutoGen(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
+
     }
 }

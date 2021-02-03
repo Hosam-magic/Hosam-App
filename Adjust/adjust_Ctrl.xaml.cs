@@ -20,9 +20,37 @@ namespace Hosam_App
     /// </summary>
     public partial class adjust_Ctrl : Page
     {
+        public Adjust.adjust_Navigator adjust_Navigator;
+        public Adjust.adjust_Page _adjust_Page;
+
         public adjust_Ctrl()
         {
             InitializeComponent();
+            Initial();
+        }
+        void Initial()
+        {
+            if (adjust_Navigator == null)
+            {
+                adjust_Navigator = new Adjust.adjust_Navigator();
+                this.adjust_Navigation.Navigate(adjust_Navigator);
+                adjust_Navigator._adjust_Ctrl = this;
+            }
+            else
+            {
+                this.adjust_Navigation.Navigate(adjust_Navigator);
+            }
+            if (_adjust_Page == null)
+            {
+                _adjust_Page = new Adjust.adjust_Page();
+                this.Adjust_Page.Navigate(_adjust_Page);
+                _adjust_Page._adjust_Ctrl = this;
+            }
+            else
+            {
+                this.adjust_Navigation.Navigate(adjust_Navigator);
+            }
+
         }
     }
 }

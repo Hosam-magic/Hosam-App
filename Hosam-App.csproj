@@ -109,7 +109,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Game\Game_List.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Game\GameCtrl_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Game\Game_ListBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,8 +162,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Game\Game_List.xaml.cs">
+      <DependentUpon>Game_List.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Game\GameCtrl_Page.xaml.cs">
       <DependentUpon>GameCtrl_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Game_ListBar.xaml.cs">
+      <DependentUpon>Game_ListBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game\Game_Carditem.xaml.cs">
       <DependentUpon>Game_Carditem.xaml</DependentUpon>

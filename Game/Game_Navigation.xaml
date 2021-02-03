@@ -34,17 +34,19 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Button Background="{x:Null}"
-                    BorderBrush="{x:Null}">
+            <Button x:Name="GameLibrary" Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Click="GameLibrary_Click">
                 <TextBlock Text="• 遊戲庫" FontSize="24"
                     Grid.Row="1" Foreground="White"
                     HorizontalAlignment="Center"
                         VerticalAlignment="Center" />
             </Button>
-            <Button Grid.Row="1" Background="{x:Null}"
+            <Button x:Name="GameList" Grid.Row="1" Background="{x:Null}"
                     Foreground="{x:Null}"
                       Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                    BorderBrush="{x:Null}">
+                    BorderBrush="{x:Null}"
+                    Click="GameList_Click">
             <TextBlock Text="• 遊戲清單" FontSize="24"
                     Grid.Row="2" Foreground="White"
                     HorizontalAlignment="Center"
@@ -58,26 +60,29 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button VerticalAlignment="Top"
+            <Button x:Name="GameButton" VerticalAlignment="Top"
                     Style="{StaticResource MaterialDesignIconForegroundButton}"
                     ToolTip="MaterialDesignIconForegroundButton"
-                    Foreground="White" Grid.Column="0">
+                    Foreground="White" Grid.Column="2"
+                    Click="GameButton_Click">
                 <materialDesign:PackIcon
                         Kind="GamepadVariantOutline"
                         Width="40" Height="40" />
             </Button>
 
-            <Button VerticalAlignment="Top"
+            <Button x:Name="HomeButton" VerticalAlignment="Top"
                     Style="{StaticResource MaterialDesignIconForegroundButton}"
                     ToolTip="MaterialDesignIconForegroundButton"
-                    Foreground="White" Grid.Column="1">
+                    Foreground="White" Grid.Column="1"
+                    Click="HomeButton_Click">
                 <materialDesign:PackIcon Kind="HomeOutline"
                         Width="40" Height="40" />
             </Button>
-            <Button VerticalAlignment="Top"
+            <Button x:Name="AdjustButton" VerticalAlignment="Top"
                     Style="{StaticResource MaterialDesignIconForegroundButton}"
                     ToolTip="MaterialDesignIconForegroundButton"
-                    Foreground="White" Grid.Column="3">
+                    Foreground="White" Grid.Column="0"
+                    Click="AdjustButton_Click">
                 <materialDesign:PackIcon Kind="TuneVariant"
                         Width="40" Height="40" />
             </Button>

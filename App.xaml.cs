@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Hosam_App.Logic.Gobal.GobalVariable;
 using Hosam_App.Logic.Service;
+using Hosam_App.ErrorCode;
 
 namespace Hosam_App
 {
@@ -22,11 +23,13 @@ namespace Hosam_App
         {
 
             //GameDetectService.InitGamedataTxt();
-            Console.WriteLine("fsaddfsdfsadfsdfs");
-            GameDetectService.InitGamedataVariable();
-            Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
-            GameStatus.GameStatusList[0].gameName = "abc";
-            Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
+            //Console.WriteLine("fsaddfsdfsadfsdfs");
+            //GameDetectService.InitGamedataVariable();
+            //Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
+            //GameStatus.GameStatusList[0].gameName = "abc";
+            //Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
+
+           
 
         }
     }

@@ -60,7 +60,7 @@ namespace Hosam_App.Logic.Service
                 string gameDataJson = File.ReadAllText(fullTxtPath);
                 List<StaticGameDTO> supportGameList = JsonConvert.DeserializeObject<List<StaticGameDTO>>(gameDataJson);
 
-                GameStatus.GameStatusList = GameStatus.StaticListToRunList(supportGameList);
+                GameStatus.GameStatusList = StaticGameDTO.StaticListToRunList(supportGameList);
 
                 return new ActionResult(true);
             }
@@ -126,8 +126,8 @@ namespace Hosam_App.Logic.Service
             try
             {
                 //型態轉換
-                List<RunningGameDTO> runningList = (List<RunningGameDTO>)GetRunningStatus().data;
-                List<StaticGameDTO> staticGameList = GameStatus.RunListToStaticList(runningList);
+                List<RunningGameDTO> runningList = GetRunningStatus();
+                List<StaticGameDTO> staticGameList = RunningGameDTO.RunListToStaticList(runningList);
 
                 string json = new JavaScriptSerializer().Serialize(staticGameList);
                 File.WriteAllText(fullTxtPath, json);

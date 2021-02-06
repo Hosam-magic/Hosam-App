@@ -71,18 +71,9 @@ namespace Hosam_App.Logic.Service
            
         }
 
-        public static ActionResult GetRunningStatus()
+        public static List<RunningGameDTO> GetRunningStatus()
         {
-            try
-            {
-                List<RunningGameDTO> gameStatus = GameStatus.GameStatusList;
-
-                return new ActionResult(true, gameStatus);
-            }
-            catch (Exception e)
-            {
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
-            }
+                return GameStatus.GameStatusList;
         }
 
         public static ActionResult UpdateRunningGameStatus()
@@ -130,7 +121,7 @@ namespace Hosam_App.Logic.Service
             
         }
 
-        public static void SaveGameStatusToTxt()
+        public static ActionResult SaveGameStatusToTxt()
         {
             try
             {

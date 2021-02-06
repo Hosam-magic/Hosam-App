@@ -11,8 +11,8 @@ namespace Hosam_App.Logic.Gobal.DefaultValue
     {
         public static readonly StaticGameDTO [] defaultGameStatusArray = new StaticGameDTO[] 
         {
-             new StaticGameDTO{ viewName = "AC",gameName="AssettoCorsa",path="",driver=""},
-             new StaticGameDTO{ viewName = "wechat-test",gameName="WeChat",path="",driver=""}  
+             new StaticGameDTO{ viewName = "AC",gameName="AssettoCorsa",path="",driver="",configId="",lastRunTime=""},
+             new StaticGameDTO{ viewName = "wechat-test",gameName="WeChat",path="",driver="",configId="",lastRunTime=""}  
         };
 
     }

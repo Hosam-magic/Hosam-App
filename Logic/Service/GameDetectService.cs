@@ -9,6 +9,7 @@ using System.Web.Script.Serialization;
 using System.IO;
 using Hosam_App.Logic.Gobal.DefaultValue;
 using Hosam_App.ErrorCode;
+using Hosam_App.Logic.Service.Base;
 
 namespace Hosam_App.Logic.Service
 {
@@ -71,9 +72,18 @@ namespace Hosam_App.Logic.Service
            
         }
 
-        public static List<RunningGameDTO> GetRunningStatus()
+        public static ActionResult GetRunningStatus()
         {
-                return GameStatus.GameStatusList;
+            try
+            {
+                List<RunningGameDTO> runningList = BaseGameDetectService.GetRunningStatus();
+                return new ActionResult(true, runningList);
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+            
         }
 
         public static ActionResult UpdateRunningGameStatus()
@@ -81,7 +91,7 @@ namespace Hosam_App.Logic.Service
             try
             {
                 //讀取全局變數中的運行資料
-                List<RunningGameDTO> runningList = (List<RunningGameDTO>)GetRunningStatus().data;
+                List<RunningGameDTO> runningList = BaseGameDetectService.GetRunningStatus();
 
                 List<Process> processlist = Process.GetProcesses().ToList();
 
@@ -126,7 +136,7 @@ namespace Hosam_App.Logic.Service
             try
             {
                 //型態轉換
-                List<RunningGameDTO> runningList = GetRunningStatus();
+                List<RunningGameDTO> runningList = BaseGameDetectService.GetRunningStatus();
                 List<StaticGameDTO> staticGameList = RunningGameDTO.RunListToStaticList(runningList);
 
                 string json = new JavaScriptSerializer().Serialize(staticGameList);
@@ -140,8 +150,6 @@ namespace Hosam_App.Logic.Service
             }
             
         }
-
-
 
     }
 }

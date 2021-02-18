@@ -134,6 +134,7 @@
     <Compile Include="Logic\DTO\ActionResult.cs" />
     <Compile Include="Logic\Gobal\DefaultValue\DefaultGameDataStatus.cs" />
     <Compile Include="Logic\Gobal\GobalVariable\GameStatus.cs" />
+    <Compile Include="Logic\Service\Base\BaseGameDetectService.cs" />
     <Compile Include="Logic\Service\GameDetectService.cs" />
     <Page Include="Login\Login_Intro.xaml">
       <SubType>Designer</SubType>

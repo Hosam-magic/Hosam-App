@@ -9,6 +9,9 @@ using System.Windows;
 using Hosam_App.Logic.Gobal.GobalVariable;
 using Hosam_App.Logic.Service;
 using Hosam_App.ErrorCode;
+using Hosam_App.Logic.Controller;
+using System.Timers;
+using Hosam_App.Logic.DTO;
 
 namespace Hosam_App
 {
@@ -17,20 +20,20 @@ namespace Hosam_App
     /// </summary>
     public partial class App : Application
     {
-        GameDetectService gameDetectService = new GameDetectService();
-
+        static Timer gobalTimer = new Timer(2000);
+        
         void App_Startup(object sender, StartupEventArgs e)
         {
+            GameDetectController.Start();
+            gobalTimer.Start();
+            gobalTimer.Elapsed += GobalTimerEvent;
+        }
 
-            //GameDetectService.InitGamedataTxt();
-            //Console.WriteLine("fsaddfsdfsadfsdfs");
-            //GameDetectService.InitGamedataVariable();
-            //Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
-            //GameStatus.GameStatusList[0].gameName = "abc";
-            //Trace.WriteLine(GameStatus.GameStatusList[0].gameName);
-
-           
-
+         void GobalTimerEvent(object sender, ElapsedEventArgs e)
+        {
+            GameDetectController.Update();
+            //List<RunningGameDTO> data = (List<RunningGameDTO>)GameDetectController.GetData().data;
+            //Console.WriteLine(data[0].path);
         }
     }
 }

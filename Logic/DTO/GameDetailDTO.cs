@@ -12,6 +12,9 @@ namespace Hosam_App.Logic.DTO
         public string configId;
         public string lastRunTime;
 
+        public StaticGameDTO()
+        { }
+
         public StaticGameDTO(string viewName , string gameName ,string path , string driver ,string configId , string lastRunTime)
         {
             this.viewName = viewName;
@@ -39,7 +42,10 @@ namespace Hosam_App.Logic.DTO
     }
     public class RunningGameDTO : StaticGameDTO
     {
-        public bool isRunning;
+        public bool isRunning { get; set; }
+
+        public RunningGameDTO()
+        { }
 
         public RunningGameDTO (string viewName, string gameName, string path, string driver, string configId, string lastRunTime , bool isRunning)
             :base(viewName,gameName,  path,  driver,  configId,  lastRunTime)

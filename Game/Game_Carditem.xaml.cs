@@ -27,17 +27,12 @@ namespace Hosam_App.Game
         public static readonly DependencyProperty GameNameProperty = DependencyProperty.Register("GameName", typeof(string), typeof(Game_Carditem));
 
         // State 0 = available  1 = Need upgraded 2 = Disatable
-        public static readonly DependencyProperty GameStatesProperty = DependencyProperty.Register("GameStates", typeof(int), typeof(Game_Carditem),new UIPropertyMetadata(default(int)));
+        int State = 0;
 
-
-        DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(0.2) };
-
-        int _GameStates;
         public Game_Carditem()
         {
             InitializeComponent();
-            timer.Tick+= ButtonStates;
-            timer.Start();
+            ButtonStates();
         }
       
 
@@ -53,37 +48,33 @@ namespace Hosam_App.Game
             }
         }
         
-        public int GameStates //轉換GameStates
-        {            
-            get
-            {
-                return (int)GetValue(GameNameProperty);
-            }
-            set
-            {
-                SetValue(GameNameProperty, value);
-            }
-        }void ButtonStates(object sender, EventArgs e) {   //ButtonStates           
-            switch (_GameStates)
-            {
+       void ButtonStates() {   //ButtonStates           
+            switch (State) {
                 case 0:
-                  GameBton.Background = new SolidColorBrush(Color.FromArgb(255, 20, 204, 0));
-                   GameText.Text = "Play";
+                    VisualStateManager.GoToState(this, "Play", true);
                     break;
                 case 1:
-                   GameBton.Background = new SolidColorBrush(Color.FromArgb(255, 241, 143 , 1));
-                    GameText.Text = "Upgraded";
+                    VisualStateManager.GoToState(this, "Update", true);
                     break;
-
                 case 2:
-                    GameBton.Background = new SolidColorBrush(Color.FromArgb(255, 242, 27, 63));
-                    GameBton.IsEnabled =false;
-                   GameText.Text = "disatable";
+                    VisualStateManager.GoToState(this, "disabled", true);
                     break;
                 default:
-                    _GameStates = 0;
+                    VisualStateManager.GoToState(this, "Play", true);
                     break;
             }
+        }
+
+        private void GameButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (State > 2)
+            {
+                State = 0;
+            }
+            else {
+                State++;
+            }
+            ButtonStates();
         }
     }
 

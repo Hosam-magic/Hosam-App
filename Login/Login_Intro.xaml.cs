@@ -20,7 +20,7 @@ namespace Hosam_App
     /// </summary>
     public partial class Login_Intro : Page
     {
-        private const string V = "Login/Login_Load.xaml";
+         string V = "Login/Login_Load.xaml";
         MainWindow _mainWindow =null;
         public Login_Intro()
         {

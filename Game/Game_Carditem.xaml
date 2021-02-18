@@ -11,9 +11,66 @@
         d:DesignWidth="718">
     <UserControl.Resources>
 
-
     </UserControl.Resources>
-    <Grid>
+
+    <Grid x:Name="LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Play">
+                    <Storyboard>
+                        <ColorAnimation
+                                Storyboard.TargetName="GameButton"
+                                Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                To="#FF14CC00" Duration="0:0:1" />
+                        <StringAnimationUsingKeyFrames
+                                Storyboard.TargetName="GameText"
+                                Storyboard.TargetProperty="(TextBlock.Text)"
+                                Duration="0:0:1"
+                                FillBehavior="HoldEnd">
+                            <DiscreteStringKeyFrame
+                                    Value="Play"
+                                    KeyTime="0" />
+
+                        </StringAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Update">
+                    <Storyboard>
+                        <ColorAnimation
+                                Storyboard.TargetName="GameButton"
+                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                To="#FFA200"
+                                Duration="0:0:1" />
+                        <StringAnimationUsingKeyFrames
+                                Storyboard.TargetName="GameText"
+                                Storyboard.TargetProperty="(TextBlock.Text)"
+                                Duration="0:0:1"
+                                FillBehavior="HoldEnd">
+                            <DiscreteStringKeyFrame
+                                    Value="Update"
+                                    KeyTime="0" />
+                        </StringAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="disabled">
+                    <Storyboard>
+                        <ColorAnimation
+                                Storyboard.TargetName="GameButton"
+                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                To="#F93943" Duration="0:0:1" />
+                        <StringAnimationUsingKeyFrames
+                                Storyboard.TargetName="GameText"
+                                Storyboard.TargetProperty="(TextBlock.Text)"
+                                Duration="0:0:1"
+                                FillBehavior="HoldEnd">
+                            <DiscreteStringKeyFrame
+                                    Value="disabled" KeyTime="0" />
+                        </StringAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*" />
             <ColumnDefinition Width="1.*" />
@@ -44,19 +101,22 @@
                 Grid.Column="2" VerticalAlignment="Center"
                 HorizontalAlignment="Center" FontSize="30"
                 Foreground="#FF383838" />
-        <Button x:Name="GameBton"
+
+        <Button x:Name="GameButton" Background="#FF14CC00"
+                Height="40" Grid.Column="2" Grid.Row="2"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                Height="40"
                 materialDesign:ButtonAssist.CornerRadius="25"
                 ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
-                Grid.Column="2" Grid.Row="2" Width="200"
-                Background="#FF14CC00"
-                BorderBrush="{x:Null}"
-                Foreground="#DDFFFFFF">
+                Width="200" BorderBrush="{x:Null}"
+                Foreground="#DDFFFFFF"
+                Click="GameButton_Click">
+
+
             <TextBlock x:Name="GameText"
                 Text="Play" FontSize="25"
                     FontStretch="UltraExpanded" Width="108"
                     TextAlignment="Center" />
+
         </Button>
         <ComboBox materialDesign:HintAssist.Hint="Memeory Slot"
                 Grid.Column="3" VerticalAlignment="Center"

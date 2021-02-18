@@ -24,21 +24,21 @@
                 <RowDefinition Height="7*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200">
+            <StackPanel Grid.Row="1" Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left" Width="200">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                 
-                   
+
                 </Grid>
                 <ComboBox
                         Style="{StaticResource MaterialDesignFilledComboBox}"
                         x:Name="FilledComboBox"
                         IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledComboBoxEnabledComboBox}"
                         materialDesign:HintAssist.Hint="Some item" 
-                    
                         Width="200">
                     <ComboBoxItem Content="Item 1" />
                     <ComboBoxItem Content="Item 2" />
@@ -62,21 +62,35 @@
                         VerticalAlignment="Top" Width="718"
                         GameName="ProjectCar"
                         DataContext="pack://application:,,,/Game/GameIcon/ProjectCarIcon.jpg"
-                        GameStates="0" />
+                       />
                 <local:Game_Carditem Grid.Column="1"
                         HorizontalAlignment="Center"
                         Height="100" Grid.Row="1"
                         VerticalAlignment="Center"
                         GameName="GranTurismoSPORT"
                         DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
-                        GameStates="1" Width="718" />
+                         Width="718" />
                 <local:Game_Carditem Grid.Column="1"
                         HorizontalAlignment="Center"
                         Height="100" Grid.Row="2"
                         VerticalAlignment="Center"
-                        GameName="WAHAHA" GameStates="1"
+                        GameName="F1® 2020" 
                         DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
                         Width="718" />
+                <local:Game_Carditem
+                        HorizontalAlignment="Center"
+                        Height="100" Grid.Row="3"
+                        VerticalAlignment="Center"
+                        GameName="DiRT Rally"
+                        DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
+                        Width="718" />
+                <local:Game_Carditem
+                        HorizontalAlignment="Center"
+                        Height="100" Grid.Row="4"
+                        VerticalAlignment="Center" GameName="Need for Speed" 
+                        DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
+                        Width="718"
+                        />
             </Grid>
 
         </Grid>

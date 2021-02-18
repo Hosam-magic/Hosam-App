@@ -13,10 +13,10 @@
             <ColumnDefinition Width="7*" />
         </Grid.ColumnDefinitions>
         <Frame x:Name="adjust_Navigation" Grid.Column="0"
-                Source="adjust_Navigator.xaml"
+             
                 NavigationUIVisibility="Hidden" Height="900" Width="212" VerticalAlignment="Top"/>
         <Frame x:Name="Adjust_Page" Grid.Column="1"
-                Source="adjust_Page.xaml"
+             
                 NavigationUIVisibility="Hidden" />
         
     </Grid>

@@ -29,11 +29,17 @@ namespace Hosam_App
             gobalTimer.Elapsed += GobalTimerEvent;
         }
 
-         void GobalTimerEvent(object sender, ElapsedEventArgs e)
+        void App_Close(object sender, EventArgs e)
+        {
+            GameDetectController.Close();
+        }
+
+        void GobalTimerEvent(object sender, ElapsedEventArgs e)
         {
             GameDetectController.Update();
-            //List<RunningGameDTO> data = (List<RunningGameDTO>)GameDetectController.GetData().data;
-            //Console.WriteLine(data[0].path);
+            List<RunningGameDTO> data = (List<RunningGameDTO>)GameDetectController.GetData().data;
+            //Console.WriteLine(data[1].lastRunTime);
+            //Console.WriteLine(data[1].isRunning);
         }
     }
 }

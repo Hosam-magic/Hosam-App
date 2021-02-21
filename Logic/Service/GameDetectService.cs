@@ -103,7 +103,9 @@ namespace Hosam_App.Logic.Service
                     //判斷是否有在執行
                     if (findedProcess != null)
                     {
+                       
                         gameStatus.isRunning = true;
+                        gameStatus.lastRunTime = DateTime.Now.ToString();
 
                         //檢查遊戲路徑不等於執行程序的路徑時，將執行路徑更新
                         if (gameStatus.path != findedProcess.MainModule.FileName)

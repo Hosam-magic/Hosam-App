@@ -10,6 +10,7 @@ using System.IO;
 using Hosam_App.Logic.Gobal.DefaultValue;
 using Hosam_App.ErrorCode;
 using Hosam_App.Logic.Service.Base;
+using System.ComponentModel;
 
 namespace Hosam_App.Logic.Service
 {
@@ -150,6 +151,25 @@ namespace Hosam_App.Logic.Service
             {
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
+            
+        }
+
+        public static ActionResult runGame(string path)
+        {
+            try
+            {
+                Process.Start(path);
+                return new ActionResult(true);
+            }
+            catch (Win32Exception)
+            {
+                return new ActionResult(false, SoftLogicErr.pathNotFound.getCode(), SoftLogicErr.pathNotFound.getMsg());
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+            
             
         }
 

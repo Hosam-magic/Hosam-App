@@ -27,7 +27,7 @@ namespace Hosam_App.Game
         public static readonly DependencyProperty GameNameProperty = DependencyProperty.Register("GameName", typeof(string), typeof(Game_Carditem));
 
         // State 0 = available  1 = Need upgraded 2 = Disatable
-        int State = 0;
+       public int State;
 
         public Game_Carditem()
         {
@@ -75,6 +75,7 @@ namespace Hosam_App.Game
                 State++;
             }
             ButtonStates();
+            Console.WriteLine(GameName);
         }
     }
 

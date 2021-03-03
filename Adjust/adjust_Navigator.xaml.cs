@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Hosam_App.Adjust
 {
@@ -26,13 +27,15 @@ namespace Hosam_App.Adjust
         int RowDef, MaxSlotNumer = 5;
         public adjust_Ctrl _adjust_Ctrl;
         adjust_Page _adjust_Page;
+        
         public adjust_Navigator()
         {
             InitializeComponent();
             RowDef = 3;
             MemeorySlotBtn = new Button[MaxSlotNumer];
+
+
             Generator();
-            
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -107,52 +110,47 @@ namespace Hosam_App.Adjust
                 Console.WriteLine(RowDef);
             }
         }
-        void Slot_Click(object sender, RoutedEventArgs e) {
+        void Slot_Click(object sender, RoutedEventArgs e)
+        {
             Button _button = (Button)sender;
             string R = _button.Content.ToString();
-            Console.WriteLine(R);
             if (_adjust_Page == null)
             {
-                _adjust_Page = _adjust_Ctrl._adjust_Page;
-                switch (R) {
-                    case "MemeorySlot 0":
-                        _adjust_Page.ReflashThePage("hello", 12, 51, 19);
-                        Console.WriteLine("Susses" + R);
-                        break;
-                    case "MemeorySlot 1":
-                        _adjust_Page.ReflashThePage("fffwfwfwfff", 18, 98, 6);
-                        Console.WriteLine("Susses" + R);
-                        break;
-                    case "MemeorySlot 2":
-                        Console.WriteLine("Susses" + R);
-                        _adjust_Page.ReflashThePage("asdaf", 20, 70, 87);
-                        break;
-                    default:
-
-                        break;
-                }
-            }
-            else {
                 _adjust_Page = _adjust_Ctrl._adjust_Page;
                 switch (R)
                 {
                     case "MemeorySlot 0":
                         _adjust_Page.ReflashThePage("hello", 12, 51, 19);
-
                         break;
                     case "MemeorySlot 1":
                         _adjust_Page.ReflashThePage("fffwfwfwfff", 18, 98, 6);
-
                         break;
                     case "MemeorySlot 2":
-
                         _adjust_Page.ReflashThePage("asdaf", 20, 70, 87);
                         break;
                     default:
-
                         break;
                 }
+            }
+            else
+            {
+                _adjust_Page = _adjust_Ctrl._adjust_Page;
+                switch (R)
+                {
+                    case "MemeorySlot 0":
+                        _adjust_Page.ReflashThePage("hello", 12, 51, 19);
+                        break;
+                    case "MemeorySlot 1":
+                        _adjust_Page.ReflashThePage("fffwfwfwfff", 18, 98, 6);
+                        break;
+                    case "MemeorySlot 2":
+                        _adjust_Page.ReflashThePage("asdaf", 20, 70, 87);
+                        break;
+                    default:
+                        break;
                 }
+            }
         }
+   
     }
 }

@@ -22,7 +22,8 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="0.5*" />
                 <RowDefinition Height="7*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="0.3*" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="1" Grid.Column="1"
                     VerticalAlignment="Center"
@@ -46,53 +47,10 @@
                 </ComboBox>
             </StackPanel>
 
-            <Grid Grid.Row="3" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="3*" />
-                </Grid.RowDefinitions>
-
-                <local:Game_Carditem
-                        HorizontalAlignment="Center"
-                        Height="100" Grid.Row="0"
-                        Grid.RowSpan="2"
-                        VerticalAlignment="Top" Width="718"
-                        GameName="ProjectCar"
-                        DataContext="pack://application:,,,/Game/GameIcon/ProjectCarIcon.jpg"
-                       />
-                <local:Game_Carditem Grid.Column="1"
-                        HorizontalAlignment="Center"
-                        Height="100" Grid.Row="1"
-                        VerticalAlignment="Center"
-                        GameName="GranTurismoSPORT"
-                        DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
-                         Width="718" />
-                <local:Game_Carditem Grid.Column="1"
-                        HorizontalAlignment="Center"
-                        Height="100" Grid.Row="2"
-                        VerticalAlignment="Center"
-                        GameName="F1® 2020" 
-                        DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
-                        Width="718" />
-                <local:Game_Carditem
-                        HorizontalAlignment="Center"
-                        Height="100" Grid.Row="3"
-                        VerticalAlignment="Center"
-                        GameName="DiRT Rally"
-                        DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
-                        Width="718" />
-                <local:Game_Carditem
-                        HorizontalAlignment="Center"
-                        Height="100" Grid.Row="4"
-                        VerticalAlignment="Center" GameName="Need for Speed" 
-                        DataContext="pack://application:,,,/Game/GameIcon/GranTurismoSPORT.jpg"
-                        Width="718"
-                        />
-            </Grid>
-
+            <Grid Grid.Row="3" Grid.Column="1"
+                    x:Name="Game_Carditem_Bar"  />
+            <Grid Grid.Row="4" Grid.Column="1"
+                    x:Name="PageBtn" />
         </Grid>
     </Grid>
 </Page>

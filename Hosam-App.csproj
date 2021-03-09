@@ -152,8 +152,11 @@
     </Page>
     <Compile Include="ErrorCode\SoftLogicErr.cs" />
     <Compile Include="Logic\Controller\GameDetectController.cs" />
+    <Compile Include="Logic\Controller\MotionSettingController.cs" />
     <Compile Include="Logic\DTO\ActionResult.cs" />
     <Compile Include="Logic\Entity\GameData.cs" />
+    <Compile Include="Logic\Entity\MotionSetting.cs" />
+    <Compile Include="Logic\Repository\GameDataRepository.cs" />
     <Compile Include="Logic\Service\Base\BaseGameDetectService.cs" />
     <Compile Include="Logic\Service\GameDetectService.cs" />
     <Page Include="Login\Login_Intro.xaml">

@@ -1,14 +1,16 @@
 ﻿using Dapper;
 using Hosam_App.Logic.Entity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 
-namespace Hosam_App.Logic.Service.Base
+
+namespace Hosam_App.Logic.Repository
 {
-    class BaseGameDetectService
+    class GameDataRepository
     {
         public static string sqliteDbPath = ConfigurationManager.AppSettings["SqliteDbPath"];
 
@@ -27,7 +29,7 @@ namespace Hosam_App.Logic.Service.Base
             {
                 string sql = "select * from GameData" +
                              "where gameName = @gameName";
-                return cnn.Query<GameData>(sql , new { gameName}).ToList();
+                return cnn.Query<GameData>(sql, new { gameName }).ToList();
             }
         }
 
@@ -41,7 +43,7 @@ namespace Hosam_App.Logic.Service.Base
             }
         }
 
-        public static void UpdateGameData (GameData gameData )
+        public static void UpdateGameData(GameData gameData)
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
             {
@@ -49,8 +51,8 @@ namespace Hosam_App.Logic.Service.Base
                              "SET isRunning = @isRunning , path = @path , lastRunTime = @lastRunTime " +
                              "where gameName=@gameName ";
 
-               
-                 cnn.Execute(sql, new { gameData.gameName, gameData.isRunning, gameData.path, gameData.lastRunTime });
+
+                cnn.Execute(sql, new { gameData.gameName, gameData.isRunning, gameData.path, gameData.lastRunTime });
             }
         }
     }

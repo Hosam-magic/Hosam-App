@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Hosam_App.ErrorCode;
-using Hosam_App.Logic.Service.Base;
 using System.ComponentModel;
 using Hosam_App.Logic.Entity;
+using Hosam_App.Logic.Repository;
 
 namespace Hosam_App.Logic.Service
 {
@@ -22,11 +22,11 @@ namespace Hosam_App.Logic.Service
                 List<GameData> gameData = new List<GameData>();
                 if (gameName == null)
                 {
-                    gameData = BaseGameDetectService.GetAllGameData();
+                    gameData = GameDataRepository.GetAllGameData();
                 }
                 else
                 {
-                    gameData = BaseGameDetectService.GetGameDataByName(gameName);
+                    gameData = GameDataRepository.GetGameDataByName(gameName);
                 }
                 return new ActionResult(true, gameData);
             }
@@ -42,7 +42,7 @@ namespace Hosam_App.Logic.Service
             try
             {
                 //讀取全局變數中的運行資料
-                List<GameData> supGameList = BaseGameDetectService.GetAllGameData();
+                List<GameData> supGameList = GameDataRepository.GetAllGameData();
 
                 List<Process> processlist = Process.GetProcesses().ToList();
 
@@ -72,8 +72,7 @@ namespace Hosam_App.Logic.Service
                     if (needUpdate)
                     {
                         //進行資料更新
-                        Console.WriteLine("AAAA");
-                        BaseGameDetectService.UpdateGameDataByGameName(supGame);
+                        GameDataRepository.UpdateGameData(supGame);
                     }
                 }
 
@@ -91,7 +90,7 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
-                List<GameData> data = BaseGameDetectService.GetGameDataByPath(path);
+                List<GameData> data = GameDataRepository.GetGameDataByPath(path);
                 
 
                 //如果全局變數中沒有該路徑報錯

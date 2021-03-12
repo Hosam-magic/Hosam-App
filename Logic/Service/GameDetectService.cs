@@ -19,7 +19,7 @@ namespace Hosam_App.Logic.Service
     {
 
 
-        static string installPath = "F:/";
+        static string installPath = "D:/";
         static string txtPath = "game.txt";
 
         static string fullTxtPath = Path.Combine(installPath, txtPath);

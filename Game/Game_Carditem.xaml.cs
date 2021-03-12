@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Threading;
 using System.ComponentModel;
+using Hosam_App.Logic.Controller;
+using Hosam_App.Logic.DTO;
 
 namespace Hosam_App.Game
 {
@@ -34,7 +36,6 @@ namespace Hosam_App.Game
             InitializeComponent();
             ButtonStates();
         }
-      
 
         public string GameName    //轉換GameName;
         {
@@ -67,15 +68,11 @@ namespace Hosam_App.Game
 
         private void GameButton_Click(object sender, RoutedEventArgs e)
         {
-            if (State > 2)
-            {
-                State = 0;
-            }
-            else {
-                State++;
-            }
-            ButtonStates();
-            Console.WriteLine(GameName);
+            List<RunningGameDTO> data = (List<RunningGameDTO>)GameDetectController.GetData().data;
+            ActionResult Errcode = GameDetectController.GetData();
+            Console.WriteLine(Errcode.scucess);
+            string Err = Errcode.errorCode;
+            Console.WriteLine(Err);
         }
     }
 

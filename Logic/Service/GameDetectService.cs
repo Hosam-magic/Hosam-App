@@ -40,6 +40,10 @@ namespace Hosam_App.Logic.Service
 
                 List<Process> processlist = Process.GetProcesses().ToList();
 
+                //存放哪些遊戲被關閉或開啟
+                List<GameData> stopGameList = new List<GameData>();
+                List<GameData> startGameList = new List<GameData>();
+
                 //檢查是否執行程序的名稱 = 支援的遊戲名稱 ，如果相同加到 List 中 
                 foreach (GameData supGame in supGameList)
                 {
@@ -54,12 +58,19 @@ namespace Hosam_App.Logic.Service
                         supGame.path = findedProcess.MainModule.FileName;
                         supGame.lastRunTime = DateTime.Now.ToString();
 
+                        //加入被起動的遊戲清單
+                        startGameList.Add(supGame);
+
                         needUpdate = true;
                     }
                     //DB顯示有執行，但有沒有處理程序中找到
                     if (findedProcess == null && supGame.isRunning == 1)
                     {
                         supGame.isRunning = 0;
+
+                        //加入被停止的遊戲清單
+                        stopGameList.Add(supGame);
+
                         needUpdate = true;
                     }
 
@@ -68,6 +79,21 @@ namespace Hosam_App.Logic.Service
                         //進行資料更新
                         GameDataRepository.UpdateGameData(supGame);
                     }
+
+                    //依照起動與停止的記錄做出對應的行為
+                    if (stopGameList.Count != 0)
+                    {
+                        //停止相對應的區動
+                    }
+
+                    if (startGameList.Count > 1)
+                    { return new ActionResult(false, SoftLogicErr.detactMultipleGame.getCode(), SoftLogicErr.detactMultipleGame.getMsg()); }
+
+                    if (startGameList.Count == 1)
+                    {
+                        //起動相對應的區動
+                    }
+                    
                 }
 
                return new ActionResult(true);

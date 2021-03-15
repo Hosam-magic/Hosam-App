@@ -14,11 +14,13 @@ namespace Hosam_App.ErrorCode
         //通用錯誤
         public static readonly SoftLogicErr unexceptErr = new SoftLogicErr("0101001", "unexcept err plz check log");
         public static readonly SoftLogicErr pathNotFound = new SoftLogicErr("0101002", "system can't not found in this path");
+        public static readonly SoftLogicErr detactMultipleGame = new SoftLogicErr("0101003", "detact multiple game running");
 
         //資料庫相關錯誤
         public static readonly SoftLogicErr dbException = new SoftLogicErr("0101020", "DB unexcept err");
         public static readonly SoftLogicErr nameAlreadyExist = new SoftLogicErr("0101021", "this name already in DB");
         public static readonly SoftLogicErr dataNotFound = new SoftLogicErr("0101022", "DB can't find this data");
+
 
 
         private SoftLogicErr(string errorCode, string errorMsg)

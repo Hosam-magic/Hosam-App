@@ -14,22 +14,14 @@ namespace Hosam_App.Logic.Repository
     {
         public static string sqliteDbPath = ConfigurationManager.AppSettings["SqliteDbPath"];
 
-        public static List<GameData> GetAllGameData()
+        //如果傳進來的 gmaeName 是 null ，就回傳所有資料
+        public static List<GameData> GetGameData(string gameName)
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
             {
-                string sql = "select * from GameData";
-                return cnn.Query<GameData>(sql).ToList();
-            }
-        }
-
-        public static List<GameData> GetGameDataByName(string gameName)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
-            {
-                string sql = "select * from GameData" +
-                             "where gameName = @gameName";
-                return cnn.Query<GameData>(sql, new { gameName }).ToList();
+                string sql = "select * from GameData " +
+                            "where (@gameName is null or gameName=@gameName)";
+                return cnn.Query<GameData>(sql,new { gameName}).ToList();
             }
         }
 
@@ -37,7 +29,7 @@ namespace Hosam_App.Logic.Repository
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
             {
-                string sql = "select * from GameData" +
+                string sql = "select * from GameData " +
                              "where path = @path";
                 return cnn.Query<GameData>(sql, new { path }).ToList();
             }

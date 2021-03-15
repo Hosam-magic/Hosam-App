@@ -15,10 +15,10 @@ namespace Hosam_App.ErrorCode
         public static readonly SoftLogicErr unexceptErr = new SoftLogicErr("0101001", "unexcept err plz check log");
         public static readonly SoftLogicErr pathNotFound = new SoftLogicErr("0101002", "system can't not found in this path");
 
-        //全局變數相關錯誤
-        public static readonly SoftLogicErr alreadyStart = new SoftLogicErr("0101020", "you already start");
-        public static readonly SoftLogicErr needStart = new SoftLogicErr("0101021", "Gobal Variable list is null , you need to start first");
-        public static readonly SoftLogicErr dataNotFound = new SoftLogicErr("0101022", "this data can't find in Gobal Variable");
+        //資料庫相關錯誤
+        public static readonly SoftLogicErr dbException = new SoftLogicErr("0101020", "DB unexcept err");
+        public static readonly SoftLogicErr nameAlreadyExist = new SoftLogicErr("0101021", "this name already in DB");
+        public static readonly SoftLogicErr dataNotFound = new SoftLogicErr("0101022", "DB can't find this data");
 
 
         private SoftLogicErr(string errorCode, string errorMsg)

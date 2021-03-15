@@ -19,15 +19,9 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
-                List<GameData> gameData = new List<GameData>();
-                if (gameName == null)
-                {
-                    gameData = GameDataRepository.GetAllGameData();
-                }
-                else
-                {
-                    gameData = GameDataRepository.GetGameDataByName(gameName);
-                }
+                //如果傳進來的 gmaeName 是 null ，就回傳所有資料
+                List<GameData> gameData = GameDataRepository.GetGameData(gameName);
+
                 return new ActionResult(true, gameData);
             }
             catch (Exception e)
@@ -42,7 +36,7 @@ namespace Hosam_App.Logic.Service
             try
             {
                 //讀取全局變數中的運行資料
-                List<GameData> supGameList = GameDataRepository.GetAllGameData();
+                List<GameData> supGameList = GameDataRepository.GetGameData(null);
 
                 List<Process> processlist = Process.GetProcesses().ToList();
 
@@ -91,9 +85,9 @@ namespace Hosam_App.Logic.Service
             try
             {
                 List<GameData> data = GameDataRepository.GetGameDataByPath(path);
-                
 
-                //如果全局變數中沒有該路徑報錯
+
+                //如果DB中沒有該路徑報錯
                 if (data.Count == 0)
                 {
                     return new ActionResult(false, SoftLogicErr.dataNotFound.getCode(), SoftLogicErr.dataNotFound.getMsg());

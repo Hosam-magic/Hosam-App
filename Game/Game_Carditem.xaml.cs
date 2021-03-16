@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Windows.Threading;
 using System.ComponentModel;
+using Hosam_App.Logic.Controller;
+using Hosam_App.Logic.DTO;
+using Hosam_App.Logic.Entity;
 
 namespace Hosam_App.Game
 {
@@ -27,14 +30,13 @@ namespace Hosam_App.Game
         public static readonly DependencyProperty GameNameProperty = DependencyProperty.Register("GameName", typeof(string), typeof(Game_Carditem));
 
         // State 0 = available  1 = Need upgraded 2 = Disatable
-        int State = 0;
+       public int State;
 
         public Game_Carditem()
         {
             InitializeComponent();
             ButtonStates();
         }
-      
 
         public string GameName    //轉換GameName;
         {
@@ -67,14 +69,11 @@ namespace Hosam_App.Game
 
         private void GameButton_Click(object sender, RoutedEventArgs e)
         {
-            if (State > 2)
-            {
-                State = 0;
-            }
-            else {
-                State++;
-            }
-            ButtonStates();
+            List<GameData> data = (List<GameData>)GameDetectController.GetData(null).data;
+            ActionResult Errcode = GameDetectController.GetData(null);
+            Console.WriteLine(Errcode.scucess);
+            string Err = Errcode.errorCode;
+            Console.WriteLine(Err);
         }
     }
 

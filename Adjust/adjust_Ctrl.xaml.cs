@@ -20,13 +20,25 @@ namespace Hosam_App
     /// </summary>
     public partial class adjust_Ctrl : Page
     {
+        public static readonly DependencyProperty BlurValue = DependencyProperty.Register("blurValue", typeof(float), typeof(adjust_Ctrl));
+
         public Adjust.adjust_Navigator adjust_Navigator;
         public Adjust.adjust_Page _adjust_Page;
-
+       public bool isWarring;
+        Grid alarm;
+        Adjust.Adjust_Resource.Component.warringbox WarringBox;
         public adjust_Ctrl()
         {
             InitializeComponent();
             Initial();
+            if (alarm == null) {
+
+                alarm = Effect;
+                WarringBox = AlramBox;
+                WarringBox.adjust_Ctrl = this;
+                isWarring = true;
+                Warring();
+            }
         }
         void Initial()
         {
@@ -50,7 +62,20 @@ namespace Hosam_App
             {
                 this.adjust_Navigation.Navigate(adjust_Navigator);
             }
-
+        }public void Warring() {
+            switch (isWarring) {
+                case true:
+                    WarringBox.Visibility = Visibility.Visible;
+                    blurValue = 40;
+                    GrayBar.Visibility = Visibility.Visible;
+                    break;
+                case false:
+                    WarringBox.Visibility = Visibility.Hidden;
+                    blurValue = 0;
+                    GrayBar.Visibility = Visibility.Hidden;
+                    break;     
+            }
         }
+        public float blurValue { get {return (float)GetValue(BlurValue); } set{ SetValue(BlurValue, value); } }
     }
 }

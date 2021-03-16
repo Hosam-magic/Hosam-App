@@ -33,9 +33,10 @@ namespace Hosam_App.Game
             {
                 InsertListGridRow(i);
             }
-        }    /// <summary>
-             /// ListBar 的自動展開邏輯
-             /// </summary>
+        }   
+         /// <summary>
+         /// ListBar 的自動展開邏輯
+         /// </summary>
         void InsertListGridRow(int ButtonNumber)
         {
             if (ButtonNumber > 0)
@@ -57,14 +58,15 @@ namespace Hosam_App.Game
                     _Game_ListBar.Width = 718;
                 }
             }
-        }    /// <summary>
-             /// 頁面切換按鈕展開
-             /// </summary>
+        }  
+         /// <summary>
+         /// 頁面切換按鈕展開 
+         /// </summary>
         void PageGenerator()
         {
             ColumnDefinition[] PageColDef = new ColumnDefinition[PageNumber];
             for (int i = 0; i < PageNumber; i++)
-            {
+            {                
                 PageColDef[i] = new ColumnDefinition();
                 PageColDef[i].Width = new GridLength(1, GridUnitType.Star);
                 PageChangeGrid.ColumnDefinitions.Add(PageColDef[i]);
@@ -87,7 +89,9 @@ namespace Hosam_App.Game
                 }
             }
             DispalyPageButtonNumber();
-        }/// <summary>
+        }
+        
+         /// <summary>
          /// 換頁按鈕事件
          /// </summary>
         private void PageBtnEvent(object sender, RoutedEventArgs e)
@@ -95,6 +99,7 @@ namespace Hosam_App.Game
             CurPage = int.Parse(((Button)sender).Content.ToString());
             DispalyPageButtonNumber();
         }
+
         /// <summary>
         /// 換頁button的控制邏輯
         /// </summary>

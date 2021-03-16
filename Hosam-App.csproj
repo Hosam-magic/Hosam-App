@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Adjust\Adjust_Resource\Component\warringbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Game\Game_List.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +154,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="Adjust\Adjust_Resource\Component\warringbox.xaml.cs">
+      <DependentUpon>warringbox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ErrorCode\SoftLogicErr.cs" />
     <Compile Include="Logic\Controller\GameDetectController.cs" />
     <Compile Include="Logic\Controller\MotionSettingController.cs" />

@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Hosam_App"
              xmlns:materialDesignMahApps="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="MainWindow.xaml"
-             Startup="App_Startup" >
+             Startup="App_Startup" Exit="App_Close">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

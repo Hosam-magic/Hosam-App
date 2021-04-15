@@ -23,6 +23,7 @@ namespace Hosam_App.Logic.Service
                     ac.Start();
                     ac.PhysicsInterval = delayTime;
                     ac.PhysicsUpdated += AcToPhysicalData;
+                    Console.WriteLine("AAA");
 
                 }
 
@@ -56,11 +57,11 @@ namespace Hosam_App.Logic.Service
 
         public static void AcToPhysicalData(object sender, PhysicsEventArgs e)
         {
-            double x = e.Physics.AccG[0];
-            double y = e.Physics.AccG[2];
-            double z = e.Physics.AccG[1];
+            double x = Math.Round(e.Physics.AccG[0],5);
+            double y = Math.Round(e.Physics.AccG[2], 5);
+            double z = Math.Round(e.Physics.AccG[1], 5);
 
-            
+
             PhsicalData.Save(x, y, z);
         }
     }

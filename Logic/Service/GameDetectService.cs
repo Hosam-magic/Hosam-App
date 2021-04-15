@@ -54,15 +54,21 @@ namespace Hosam_App.Logic.Service
                     //DB顯示未執行，但有在處理程序中找到
                     if (findedProcess != null && supGame.isRunning != 1)
                     {
-                        supGame.isRunning = 1;
-                        supGame.path = findedProcess.MainModule.FileName;
-                        supGame.lastRunTime = DateTime.Now.ToString();
+                        //避免加入重複的項目
+                        if (!startGameList.Contains(supGame))
+                        {
+                            supGame.isRunning = 1;
+                            supGame.path = findedProcess.MainModule.FileName;
+                            supGame.lastRunTime = DateTime.Now.ToString();
 
-                        //加入被起動的遊戲清單
-                        startGameList.Add(supGame);
+                            //加入被起動的遊戲清單
+                            startGameList.Add(supGame);
 
-                        needUpdate = true;
+                            needUpdate = true;
+                        }
                     }
+
+
                     //DB顯示有執行，但有沒有處理程序中找到
                     if (findedProcess == null && supGame.isRunning != 0)
                     {
@@ -79,34 +85,34 @@ namespace Hosam_App.Logic.Service
                         //進行資料更新
                         GameDataRepository.UpdateGameData(supGame);
                     }
-
-                    //依照起動與停止的記錄做出對應的行為
-                    if (stopGameList.Count != 0)
-                    {
-                        //停止相對應的區動
-                        foreach (GameData stopGame in stopGameList)
-                        {
-                            GameDriverService.Stop(stopGame.gameName);
-                        }
-                        
-                    }
-
-                    if (startGameList.Count > 1)
-                    { return new ActionResult(false, SoftLogicErr.detactMultipleGame.getCode(), SoftLogicErr.detactMultipleGame.getMsg()); }
-
-                    if (startGameList.Count == 1)
-                    {
-                        //起動相對應的區動
-                        foreach (GameData startGame in startGameList)
-                        {
-                            GameDriverService.Start(startGame.gameName ,1000);
-                        }
-                            
-                    }
-                    
                 }
 
-               return new ActionResult(true);
+
+                //依照起動與停止的記錄做出對應的行為
+                if (stopGameList.Count != 0)
+                {
+                    //停止相對應的區動
+                    foreach (GameData stopGame in stopGameList)
+                    {
+                        GameDriverService.Stop(stopGame.gameName);
+                    }
+
+                }
+
+                if (startGameList.Count > 1)
+                { return new ActionResult(false, SoftLogicErr.detactMultipleGame.getCode(), SoftLogicErr.detactMultipleGame.getMsg()); }
+
+                if (startGameList.Count == 1)
+                {
+                    //起動相對應的區動
+                    foreach (GameData startGame in startGameList)
+                    {
+                        GameDriverService.Start(startGame.gameName, 100);
+                    }
+
+                }
+
+                return new ActionResult(true);
             }
             catch (Exception e)
             {
@@ -114,6 +120,20 @@ namespace Hosam_App.Logic.Service
             }
 
             
+        }
+        public static ActionResult Close()
+        {
+            try
+            {
+                GameDataRepository.ResetAllRunningStatus();
+
+                return new ActionResult(true);
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+
         }
 
         public static ActionResult RunGame(string path)

@@ -38,6 +38,16 @@ namespace Hosam_App.Logic.Repository
             }
         }
 
+        public static void ResetAllRunningStatus()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
+            {
+                string sql = "Update GameData " +
+                             "Set isRunning = null";
+                cnn.Execute(sql);
+            }
+        }
+
         public static void UpdateGameData(GameData gameData)
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))

@@ -35,7 +35,7 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
-                //讀取全局變數中的運行資料
+                //讀取資料庫中所有遊戲資訊
                 List<GameData> supGameList = GameDataRepository.GetGameData(null);
 
                 List<Process> processlist = Process.GetProcesses().ToList();
@@ -52,7 +52,7 @@ namespace Hosam_App.Logic.Service
                     bool needUpdate = false;
 
                     //DB顯示未執行，但有在處理程序中找到
-                    if (findedProcess != null && supGame.isRunning == 0)
+                    if (findedProcess != null && supGame.isRunning != 1)
                     {
                         supGame.isRunning = 1;
                         supGame.path = findedProcess.MainModule.FileName;
@@ -64,7 +64,7 @@ namespace Hosam_App.Logic.Service
                         needUpdate = true;
                     }
                     //DB顯示有執行，但有沒有處理程序中找到
-                    if (findedProcess == null && supGame.isRunning == 1)
+                    if (findedProcess == null && supGame.isRunning != 0)
                     {
                         supGame.isRunning = 0;
 
@@ -84,6 +84,11 @@ namespace Hosam_App.Logic.Service
                     if (stopGameList.Count != 0)
                     {
                         //停止相對應的區動
+                        foreach (GameData stopGame in stopGameList)
+                        {
+                            GameDriverService.Stop(stopGame.gameName);
+                        }
+                        
                     }
 
                     if (startGameList.Count > 1)
@@ -92,6 +97,11 @@ namespace Hosam_App.Logic.Service
                     if (startGameList.Count == 1)
                     {
                         //起動相對應的區動
+                        foreach (GameData startGame in startGameList)
+                        {
+                            GameDriverService.Start(startGame.gameName ,1000);
+                        }
+                            
                     }
                     
                 }

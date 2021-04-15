@@ -13,12 +13,15 @@ namespace Hosam_App.Logic.Repository
 {
     class MotionSettingRepository
     {
-        public static string sqliteDbPath = ConfigurationManager.AppSettings["SqliteDbPath"];
+        public static string sqliteFolder = ConfigurationManager.AppSettings["SqliteDbFolder"];
+        public static string sqliteDbFileName = ConfigurationManager.AppSettings["SqliteDbFileName"];
+        public static string sqliteDbString = ConfigurationManager.AppSettings["SqliteDbString"];
+        public static string sqliteFullString = sqliteDbString+sqliteFolder + sqliteDbFileName;
 
         //儲存設定，並自動產生id
         public static void SaveSetting(MotionSetting motionSetting)
         {
-            using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "INSERT into MotionSetting " +
                              "(id,name,strength,smooth,amplitude) " +
@@ -41,7 +44,7 @@ namespace Hosam_App.Logic.Repository
         //依照 id 找尋設定，如果 id 是 null 則回傳全部
         public static List<MotionSetting> GetSetting(string id )
         {
-            using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "select * from MotionSetting " +
                             "where (@id is null or id=@id)";
@@ -52,7 +55,7 @@ namespace Hosam_App.Logic.Repository
         //依照 id 更新設定
         public static void UpdateSetting(MotionSetting motionSetting)
         {
-            using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "UPDATE MotionSetting " +
                              "SET name = @name , strength = @strength , smooth = @smooth , amplitude = @amplitude "+
@@ -72,7 +75,7 @@ namespace Hosam_App.Logic.Repository
         //依照 id 刪除設定
         public static void DeleteSetting(MotionSetting motionSetting)
         {
-            using (IDbConnection cnn = new SQLiteConnection(sqliteDbPath))
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "DELETE FROM MotionSetting " +
                              "where id=@id ";

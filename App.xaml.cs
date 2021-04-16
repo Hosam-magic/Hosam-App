@@ -28,8 +28,9 @@ namespace Hosam_App
             gobalTimer.Elapsed += GobalTimerEvent;
         }
 
-        void App_Close(object sender, EventArgs e)
+        void App_Close(object sender, ExitEventArgs e)
         {
+            gobalTimer.Elapsed -= GobalTimerEvent;
             GameDetectService.Close();
         }
 
@@ -38,11 +39,6 @@ namespace Hosam_App
             GameDetectController.Update();
             //List<GameData> data = (List<GameData>)GameDetectController.GetData(null).data;
             Console.WriteLine(PhsicalData.x);
-
-        }
-
-        private void Application_Exit(object sender, ExitEventArgs e)
-        {
 
         }
     }

@@ -23,7 +23,6 @@ namespace Hosam_App.Logic.Service
                     ac.Start();
                     ac.PhysicsInterval = delayTime;
                     ac.PhysicsUpdated += AcToPhysicalData;
-                    Console.WriteLine("AAA");
 
                 }
 

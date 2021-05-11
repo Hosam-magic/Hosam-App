@@ -48,11 +48,28 @@ namespace Hosam_App.Logic.Repository
                 string sql2 = "Create Table if not exists MotionSetting " +
                              "(id TEXT(36) PRIMARY KEY NOT NULL, " +
                              "name TEXT(30) NOT NULL UNIQUE, " +
-                             "strength INTEGER (20), " +
-                             "smooth INTEGER(20), " +
-                             "amplitude INTEGER(20)) ";
-
+                             "gobalStrength INTEGER (20), " +
+                             "xStrength INTEGER(20), " +
+                             "yStrength INTEGER(20), " +
+                             "zStrength INTEGER(20)) ";
+                           
                 cnn.Execute(sql2);
+            }
+        }
+
+        public static void InsertBaseDataIfNotExists(string gameName)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
+            {
+                string sql = "Insert Into GameData ( id , gameName) " +
+                             "Select @id,@gameName " +
+                             "Where Not Exists " +
+                             "(Select * From GameData " +
+                             "Where gameName = @gameName )";
+
+                string id = Guid.NewGuid().ToString();
+
+                cnn.Execute(sql, new { id, gameName });
             }
         }
     }

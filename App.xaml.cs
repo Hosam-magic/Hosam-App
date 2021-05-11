@@ -9,6 +9,7 @@ using Hosam_App.Logic.DTO;
 using Hosam_App.Logic.Service;
 using Hosam_App.Logic.Gobal;
 using System.IO;
+using Hosam_App.Logic.Repository;
 
 namespace Hosam_App
 {
@@ -31,14 +32,13 @@ namespace Hosam_App
         void App_Close(object sender, ExitEventArgs e)
         {
             gobalTimer.Elapsed -= GobalTimerEvent;
-            GameDetectService.Close();
+            GameService.Close();
         }
 
         void GobalTimerEvent(object sender, ElapsedEventArgs e)
         {
-            GameDetectController.Update();
+            GameController.Update();
             //List<GameData> data = (List<GameData>)GameDetectController.GetData(null).data;
-            Console.WriteLine(PhsicalData.x);
 
         }
     }

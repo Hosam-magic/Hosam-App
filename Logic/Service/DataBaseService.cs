@@ -31,6 +31,12 @@ namespace Hosam_App.Logic.Service
                 UtilsRepository.CreateTableIfNotExists();
 
                 //檢查基礎資料是否存在
+                string[] supposeGameArray = new string[] { "AssettoCorsa", "eurotrucks2" };
+
+                foreach (string supposeGame in supposeGameArray)
+                {
+                    UtilsRepository.InsertBaseDataIfNotExists(supposeGame);
+                }
 
                 return new ActionResult(true);
             }

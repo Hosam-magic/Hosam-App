@@ -52,6 +52,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AssettoCorsaSharedMemory">
       <HintPath>D:\下載\DLLL\AssettoCorsaSharedMemory.dll</HintPath>
@@ -161,7 +181,7 @@
       <DependentUpon>warringbox.xaml</DependentUpon>
     </Compile>
     <Compile Include="ErrorCode\SoftLogicErr.cs" />
-    <Compile Include="Logic\Controller\GameDetectController.cs" />
+    <Compile Include="Logic\Controller\GameController.cs" />
     <Compile Include="Logic\Controller\MotionSettingController.cs" />
     <Compile Include="Logic\DTO\ActionResult.cs" />
     <Compile Include="Logic\Entity\GameData.cs" />
@@ -172,7 +192,7 @@
     <Compile Include="Logic\Repository\MotionSettingRepository.cs" />
     <Compile Include="Logic\Repository\UtilsRepository.cs" />
     <Compile Include="Logic\Service\DataBaseService.cs" />
-    <Compile Include="Logic\Service\GameDetectService.cs" />
+    <Compile Include="Logic\Service\GameService.cs" />
     <Page Include="Login\Login_Intro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

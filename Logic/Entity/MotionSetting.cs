@@ -10,8 +10,9 @@ namespace Hosam_App.Logic.Entity
     {
         public string id;
         public string name;
-        public int strength;
-        public int smooth;
-        public int amplitude;
+        public int gobalStrength;
+        public int xStrength;
+        public int yStrength;
+        public int zStrength;
     }
 }

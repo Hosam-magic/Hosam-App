@@ -12,7 +12,7 @@ namespace Hosam_App.Logic.Service
 {
 
 
-    public class GameDetectService
+    public class GameService
     {
 
         public static ActionResult GetGameData(string gameName)

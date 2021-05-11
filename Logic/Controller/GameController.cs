@@ -8,14 +8,14 @@ using System.Collections.Generic;
 
 namespace Hosam_App.Logic.Controller
 {
-    class GameDetectController
+    class GameController
     {
 
         public static ActionResult Update()
         {
             try
             {
-                return GameDetectService.UpdateGameStatus();
+                return GameService.UpdateGameStatus();
             }
             catch (Exception e)
             {
@@ -27,7 +27,7 @@ namespace Hosam_App.Logic.Controller
         {
             try
             {
-                return GameDetectService.GetGameData(gameName);
+                return GameService.GetGameData(gameName);
             }
             catch (Exception e)
             {
@@ -39,7 +39,7 @@ namespace Hosam_App.Logic.Controller
         {
 
 
-            return GameDetectService.RunGame(path);
+            return GameService.RunGame(path);
 
         }
 

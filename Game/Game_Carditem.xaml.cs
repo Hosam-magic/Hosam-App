@@ -69,11 +69,11 @@ namespace Hosam_App.Game
 
         private void GameButton_Click(object sender, RoutedEventArgs e)
         {
-            List<GameData> data = (List<GameData>)GameDetectController.GetData(null).data;
-            ActionResult Errcode = GameDetectController.GetData(null);
-            Console.WriteLine(Errcode.scucess);
-            string Err = Errcode.errorCode;
-            Console.WriteLine(Err);
+            //List<GameData> data = (List<GameData>)GameDetectController.GetData(null).data;
+            //ActionResult Errcode = GameDetectController.GetData(null);
+            //Console.WriteLine(Errcode.scucess);
+            //string Err = Errcode.errorCode;
+            //Console.WriteLine(Err);
         }
     }
 

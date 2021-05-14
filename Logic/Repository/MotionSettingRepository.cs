@@ -24,8 +24,8 @@ namespace Hosam_App.Logic.Repository
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "INSERT into MotionSetting " +
-                             "(id,name,strength,smooth,amplitude) " +
-                             "values (@id ,@name ,@strength ,@smooth ,@amplitude) ";
+                             "(id ,name , gobalStrength ,xStrength , yStrength , zStrength ) " +
+                             "values (@id ,@name ,@gobalStrength ,@xStrength ,@yStrength ,@zStrength) ";
 
                 //強制使用產生的 uuid 當做 id
                 motionSetting.id = Guid.NewGuid().ToString();
@@ -34,9 +34,10 @@ namespace Hosam_App.Logic.Repository
                 {
                     motionSetting.id,
                     motionSetting.name,
-                    motionSetting.strength,
-                    motionSetting.smooth,
-                    motionSetting.amplitude
+                    motionSetting.gobalStrength,
+                    motionSetting.xStrength,
+                    motionSetting.yStrength,
+                    motionSetting.zStrength
                 });
             }
         }
@@ -58,16 +59,17 @@ namespace Hosam_App.Logic.Repository
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "UPDATE MotionSetting " +
-                             "SET name = @name , strength = @strength , smooth = @smooth , amplitude = @amplitude "+
+                             "SET name = @name , gobalStrength = @gobalStrength , xStrength = @xStrength , yStrength = @yStrength , zStrength = @zStrength" +
                              "where id=@id ";
 
                 cnn.Execute(sql, new
                 {
                     motionSetting.id,
                     motionSetting.name,
-                    motionSetting.strength,
-                    motionSetting.smooth,
-                    motionSetting.amplitude
+                    motionSetting.gobalStrength,
+                    motionSetting.xStrength,
+                    motionSetting.yStrength,
+                    motionSetting.zStrength
                 });
             }
         }

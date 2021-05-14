@@ -6,10 +6,7 @@ using System.Timers;
 using Hosam_App.Logic.Entity;
 using Hosam_App.Logic.Repository;
 using Hosam_App.Logic.DTO;
-using Hosam_App.Logic.Service;
-using Hosam_App.Logic.Gobal;
-using System.IO;
-using Hosam_App.Logic.Repository;
+
 
 namespace Hosam_App
 {
@@ -22,7 +19,8 @@ namespace Hosam_App
         
         void App_Startup(object sender, StartupEventArgs e)
         {
-            DataBaseService.CheckDataComplete();
+            DataBaseController.CheckDataComplete();
+            GameController.Initialize();
 
             //定時執行更新
             gobalTimer.Start();
@@ -32,13 +30,12 @@ namespace Hosam_App
         void App_Close(object sender, ExitEventArgs e)
         {
             gobalTimer.Elapsed -= GobalTimerEvent;
-            GameService.Close();
         }
 
         void GobalTimerEvent(object sender, ElapsedEventArgs e)
         {
             GameController.Update();
-            //List<GameData> data = (List<GameData>)GameDetectController.GetData(null).data;
+            
 
         }
     }

@@ -121,7 +121,7 @@ namespace Hosam_App.Logic.Service
 
             
         }
-        public static ActionResult Close()
+        public static ActionResult ResetAllRunningStatus()
         {
             try
             {

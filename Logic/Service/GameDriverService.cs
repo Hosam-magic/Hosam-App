@@ -17,14 +17,14 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
-                if (gameName == GameList.AssettoCorsa.gameName)
-                {
-                    ac = new AssettoCorsa();
-                    ac.Start();
-                    ac.PhysicsInterval = delayTime;
-                    ac.PhysicsUpdated += AcToPhysicalData;
+                //if (gameName == GameList.AssettoCorsa.gameName)
+                //{
+                //    ac = new AssettoCorsa();
+                //    ac.Start();
+                //    ac.PhysicsInterval = delayTime;
+                //    ac.PhysicsUpdated += AcToPhysicalData;
 
-                }
+                //}
 
                 return new ActionResult(true);
             }
@@ -38,11 +38,11 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
-                if (gameName == GameList.AssettoCorsa.gameName)
-                {
-                    ac.Stop();
-                    ac.PhysicsUpdated -= AcToPhysicalData;
-                }
+                //if (gameName == GameList.AssettoCorsa.gameName)
+                //{
+                //    ac.Stop();
+                //    ac.PhysicsUpdated -= AcToPhysicalData;
+                //}
 
                 PhsicalData.Clear();
 

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Hosam_App.ErrorCode;
+using Hosam_App.Logic.DTO;
+using Hosam_App.Logic.Entity;
+using Hosam_App.Logic.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +12,56 @@ namespace Hosam_App.Logic.Controller
 {
     class MotionSettingController
     {
+        //新增單筆
+        public static ActionResult SaveSetting(MotionSetting motionSetting)
+        {
+            try
+            {
+                return MotionSettingService.SaveSetting( motionSetting );
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+        }
+
+        //讀取全部
+        public static ActionResult GetAllSetting()
+        {
+            try
+            {
+                return MotionSettingService.GetAllSetting();
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+        }
+
+        //更新單筆
+        public static ActionResult UpdateSetting(MotionSetting motionSetting)
+        {
+            try
+            {
+                return MotionSettingService.UpdateSetting(motionSetting);
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+        }
+
+        //刪除單筆
+        public static ActionResult DeleteSetting(MotionSetting motionSetting)
+        {
+            try
+            {
+                return MotionSettingService.DeleteSetting(motionSetting);
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+        }
     }
 }

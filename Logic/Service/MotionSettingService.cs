@@ -33,6 +33,24 @@ namespace Hosam_App.Logic.Service
             }
         }
 
+        public static ActionResult GetAllSetting()
+        {
+            try
+            {
+                MotionSettingRepository.GetAllSetting();
+
+                return new ActionResult(true);
+            }
+            catch (SQLiteException e)
+            {
+                return new ActionResult(false, SoftLogicErr.dbException.getCode(), SoftLogicErr.dbException.getMsg());
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+        }
+
         public static ActionResult UpdateSetting(MotionSetting motionSetting)
         {
             try
@@ -49,6 +67,24 @@ namespace Hosam_App.Logic.Service
                     return new ActionResult(false, SoftLogicErr.nameAlreadyExist.getCode(), SoftLogicErr.nameAlreadyExist.getMsg());
                 }
 
+                return new ActionResult(false, SoftLogicErr.dbException.getCode(), SoftLogicErr.dbException.getMsg());
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+        }
+
+        public static ActionResult DeleteSetting(MotionSetting motionSetting)
+        {
+            try
+            {
+                MotionSettingRepository.DeleteSetting(motionSetting);
+
+                return new ActionResult(true);
+            }
+            catch (SQLiteException e)
+            {
                 return new ActionResult(false, SoftLogicErr.dbException.getCode(), SoftLogicErr.dbException.getMsg());
             }
             catch (Exception e)

@@ -94,7 +94,12 @@ namespace Hosam_App.Logic.Service
                     //停止相對應的區動
                     foreach (GameData stopGame in stopGameList)
                     {
-                        GameDriverService.Stop(stopGame.gameName);
+                        ActionResult result = GameDriverService.Stop(stopGame.gameName);
+
+                        if (result.scucess == false)
+                        {
+                            return result;
+                        }
                     }
 
                 }
@@ -107,7 +112,12 @@ namespace Hosam_App.Logic.Service
                     //起動相對應的區動
                     foreach (GameData startGame in startGameList)
                     {
-                        GameDriverService.Start(startGame.gameName, 100);
+                        ActionResult result = GameDriverService.Start(startGame.gameName, 100);
+
+                        if (result.scucess == false)
+                        {
+                            return result;
+                        }
                     }
 
                 }
@@ -121,6 +131,7 @@ namespace Hosam_App.Logic.Service
 
             
         }
+
         public static ActionResult ResetAllRunningStatus()
         {
             try

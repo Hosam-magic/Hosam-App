@@ -181,12 +181,13 @@
       <DependentUpon>warringbox.xaml</DependentUpon>
     </Compile>
     <Compile Include="ErrorCode\SoftLogicErr.cs" />
+    <Compile Include="Logic\Controller\DataBaseController.cs" />
     <Compile Include="Logic\Controller\GameController.cs" />
     <Compile Include="Logic\Controller\MotionSettingController.cs" />
     <Compile Include="Logic\DTO\ActionResult.cs" />
     <Compile Include="Logic\Entity\GameData.cs" />
     <Compile Include="Logic\Entity\MotionSetting.cs" />
-    <Compile Include="Logic\Gobal\GameList.cs" />
+    <Compile Include="Logic\Gobal\BaseData.cs" />
     <Compile Include="Logic\Gobal\PhsicalData.cs" />
     <Compile Include="Logic\Repository\GameDataRepository.cs" />
     <Compile Include="Logic\Repository\MotionSettingRepository.cs" />
@@ -277,7 +278,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Adjust.jpg" />

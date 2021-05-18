@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Hosam_App.ErrorCode;
 using Hosam_App.Logic.DTO;
 using Hosam_App.Logic.Repository;
+using Hosam_App.Logic.Gobal;
 
 namespace Hosam_App.Logic.Service
 {
@@ -31,9 +32,8 @@ namespace Hosam_App.Logic.Service
                 UtilsRepository.CreateTableIfNotExists();
 
                 //檢查基礎資料是否存在
-                string[] supposeGameArray = new string[] { "AssettoCorsa", "eurotrucks2" };
 
-                foreach (string supposeGame in supposeGameArray)
+                foreach (string supposeGame in BaseData.supposeGameArray)
                 {
                     UtilsRepository.InsertBaseDataIfNotExists(supposeGame);
                 }

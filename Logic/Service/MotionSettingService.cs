@@ -3,6 +3,7 @@ using Hosam_App.Logic.DTO;
 using Hosam_App.Logic.Entity;
 using Hosam_App.Logic.Repository;
 using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace Hosam_App.Logic.Service
@@ -37,9 +38,9 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
-                MotionSettingRepository.GetAllSetting();
+                List<MotionSetting> result = MotionSettingRepository.GetAllSetting();
 
-                return new ActionResult(true);
+                return new ActionResult(true, result);
             }
             catch (SQLiteException e)
             {

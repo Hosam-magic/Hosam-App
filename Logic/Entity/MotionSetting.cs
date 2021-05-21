@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hosam_App.Logic.Entity
 {
-    class MotionSetting
+    public class MotionSetting
     {
         public string id;
         public string name;

@@ -43,13 +43,14 @@ namespace Hosam_App.Logic.Repository
         }
 
         //依照 id 找尋設定，如果 id 是 null 則回傳全部
-        public static List<MotionSetting> GetAllSetting( )
+        public static List<MotionSetting> GetSetting( string id )
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
-                string sql = "select * from MotionSetting ";
+                string sql = "select * from MotionSetting mt " +
+                             "where (@id is null or id = @id) ";
                             
-                return cnn.Query<MotionSetting>(sql).ToList();
+                return cnn.Query<MotionSetting>(sql , new{ id }).ToList();
             }
         }
 

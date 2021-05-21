@@ -25,6 +25,10 @@ namespace Hosam_App
             //定時執行更新
             gobalTimer.Start();
             gobalTimer.Elapsed += GobalTimerEvent;
+
+            //測試區
+            ActionResult a = GameController.GetData("21df46a5-d5bc-46cf-94ff-183264a321d5");
+            Console.WriteLine();
         }
 
         void App_Close(object sender, ExitEventArgs e)
@@ -34,7 +38,7 @@ namespace Hosam_App
 
         void GobalTimerEvent(object sender, ElapsedEventArgs e)
         {
-            GameController.Update();
+            GameController.UpdateGameStatus();
             
 
         }

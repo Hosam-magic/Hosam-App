@@ -83,7 +83,7 @@ namespace Hosam_App.Logic.Service
                     if (needUpdate)
                     {
                         //進行資料更新
-                        GameDataRepository.UpdateGameData(supGame);
+                        GameDataRepository.UpdateGameStatus(supGame);
                     }
                 }
 
@@ -130,6 +130,35 @@ namespace Hosam_App.Logic.Service
             }
 
             
+        }
+
+        public static ActionResult ChangeMotionSetting(GameData gameData , MotionSetting motionSetting)
+        {
+            try
+            {
+                //先檢查傳入的 gameData 與 motionsetting 的 id 是否正常
+                List<GameData> dataList = GameDataRepository.GetGameData(gameData.id);
+                List<MotionSetting> settingList = MotionSettingRepository.GetSetting(motionSetting.id);
+
+                if (dataList.Count == 0 || settingList.Count == 0)
+                {
+                    return new ActionResult(false, SoftLogicErr.dataNotFound.getCode(), SoftLogicErr.dataNotFound.getMsg());
+                }
+
+                //更改 GameData 中的資料
+                GameDataRepository.UpdateGameConfigId(gameData);
+                //修改 MotionSetting 的資料
+                MotionSettingRepository.UpdateSetting(motionSetting);
+
+
+                return new ActionResult(true);
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+
+
         }
 
         public static ActionResult ResetAllRunningStatus()

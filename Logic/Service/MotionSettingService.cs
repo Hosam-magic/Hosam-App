@@ -34,11 +34,11 @@ namespace Hosam_App.Logic.Service
             }
         }
 
-        public static ActionResult GetAllSetting()
+        public static ActionResult GetSetting(string id)
         {
             try
             {
-                List<MotionSetting> result = MotionSettingRepository.GetAllSetting();
+                List<MotionSetting> result = MotionSettingRepository.GetSetting(id);
 
                 return new ActionResult(true, result);
             }

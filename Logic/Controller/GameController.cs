@@ -2,6 +2,7 @@
 
 using Hosam_App.ErrorCode;
 using Hosam_App.Logic.DTO;
+using Hosam_App.Logic.Entity;
 using Hosam_App.Logic.Service;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Hosam_App.Logic.Controller
             }
         }
 
-        public static ActionResult Update()
+        public static ActionResult UpdateGameStatus()
         {
             try
             {
@@ -36,11 +37,11 @@ namespace Hosam_App.Logic.Controller
             }
         }
 
-        public static ActionResult GetData(string gameName)
+        public static ActionResult GetData(string id)
         {
             try
             {
-                return GameService.GetGameData(gameName);
+                return GameService.GetGameData(id);
             }
             catch (Exception e)
             {
@@ -50,10 +51,12 @@ namespace Hosam_App.Logic.Controller
 
         public static ActionResult RunGame(string path)
         {
-
-
             return GameService.RunGame(path);
+        }
 
+        public static ActionResult ChangeMotionSetting(GameData gameData, MotionSetting motionSetting)
+        {
+            return GameService.ChangeMotionSetting(gameData, motionSetting);
         }
 
     }

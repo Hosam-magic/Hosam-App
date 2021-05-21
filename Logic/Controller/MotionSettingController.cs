@@ -25,12 +25,12 @@ namespace Hosam_App.Logic.Controller
             }
         }
 
-        //讀取全部
-        public static ActionResult GetAllSetting()
+        //讀取設定，若 id 為 null 則回傳全部
+        public static ActionResult GetSetting(string id)
         {
             try
             {
-                return MotionSettingService.GetAllSetting();
+                return MotionSettingService.GetSetting(id);
             }
             catch (Exception e)
             {

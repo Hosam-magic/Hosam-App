@@ -17,14 +17,15 @@ namespace Hosam_App.Logic.Repository
         public static string sqliteDbString = ConfigurationManager.AppSettings["SqliteDbString"];
         public static string sqliteFullString = sqliteDbString + sqliteFolder + sqliteDbFileName;
 
-        //如果傳進來的 gmaeName 是 null ，就回傳所有資料
-        public static List<GameData> GetGameData(string gameName)
+        //如果傳進來的 id 是 null ，就回傳所有資料
+        public static List<GameData> GetGameData(string id)
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
-                string sql = "select * from GameData " +
-                            "where (@gameName is null or gameName=@gameName)";
-                return cnn.Query<GameData>(sql,new { gameName}).ToList();
+                string sql = "select * from GameData gd " +
+                             "Left Join MotionSetting ms on gd.configId = ms.id "+
+                             "where (@id is null or gd.id = @id) " ;
+                return cnn.Query<GameData , MotionSetting , GameData>(sql,(gd,ms) => { gd.motionSetting = ms; return gd; },new { id}).ToList();
             }
         }
 
@@ -48,16 +49,29 @@ namespace Hosam_App.Logic.Repository
             }
         }
 
-        public static void UpdateGameData(GameData gameData)
+        public static void UpdateGameStatus(GameData gameData)
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "UPDATE GameData " +
                              "SET isRunning = @isRunning , path = @path , lastRunTime = @lastRunTime " +
-                             "where gameName=@gameName ";
+                             "where id=@id ";
 
 
-                cnn.Execute(sql, new { gameData.gameName, gameData.isRunning, gameData.path, gameData.lastRunTime });
+                cnn.Execute(sql, new { gameData.id, gameData.isRunning, gameData.path, gameData.lastRunTime });
+            }
+        }
+
+        public static void UpdateGameConfigId(GameData gameData)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
+            {
+                string sql = "UPDATE GameData " +
+                             "SET configId = @configId " +
+                             "where id=@id ";
+
+
+                cnn.Execute(sql, new { gameData.id, gameData.configId });
             }
         }
     }

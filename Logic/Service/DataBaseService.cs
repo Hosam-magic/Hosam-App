@@ -35,8 +35,10 @@ namespace Hosam_App.Logic.Service
 
                 foreach (string supposeGame in BaseData.supposeGameArray)
                 {
-                    UtilsRepository.InsertBaseDataIfNotExists(supposeGame);
+                    UtilsRepository.InsertGameDataIfNotExists(supposeGame);
                 }
+                UtilsRepository.InsertMotionSettingIfNotExists(BaseData.baseMotionSetting);
+
 
                 return new ActionResult(true);
             }

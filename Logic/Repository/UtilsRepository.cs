@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Hosam_App.Logic.Entity;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -51,18 +52,19 @@ namespace Hosam_App.Logic.Repository
                              "gobalStrength INTEGER (20), " +
                              "xStrength INTEGER(20), " +
                              "yStrength INTEGER(20), " +
-                             "zStrength INTEGER(20)) ";
+                             "zStrength INTEGER(20)," +
+                             "delayTime INTEGER(20) ) ";
                            
                 cnn.Execute(sql2);
             }
         }
 
-        public static void InsertBaseDataIfNotExists(string gameName)
+        public static void InsertGameDataIfNotExists(string gameName)
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
-                string sql = "Insert Into GameData ( id , gameName) " +
-                             "Select @id,@gameName " +
+                string sql = "Insert Into GameData ( id , gameName , configId) " +
+                             "Select @id,@gameName,0 " +
                              "Where Not Exists " +
                              "(Select * From GameData " +
                              "Where gameName = @gameName )";
@@ -70,6 +72,27 @@ namespace Hosam_App.Logic.Repository
                 string id = Guid.NewGuid().ToString();
 
                 cnn.Execute(sql, new { id, gameName });
+            }
+        }
+
+        public static void InsertMotionSettingIfNotExists(MotionSetting baseMotionSetting)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
+            {
+
+                string sql = "Insert Into MotionSetting " +
+                              "( id , name , gobalStrength , xStrength , yStrength , zStrength , delayTime) " +
+                             "Select 0 , @name ,@gobalStrength , @xStrength , @yStrength , @zStrength , @delayTime " +
+                             "Where Not Exists " +
+                             "(Select * From MotionSetting " +
+                             "Where id = 0 )";
+
+                cnn.Execute(sql, new { baseMotionSetting.name,
+                                       baseMotionSetting.gobalStrength,
+                                       baseMotionSetting.xStrength,
+                                       baseMotionSetting.yStrength,
+                                       baseMotionSetting.zStrength,
+                                       baseMotionSetting.delayTime });
             }
         }
     }

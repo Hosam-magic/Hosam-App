@@ -60,7 +60,9 @@ namespace Hosam_App.Logic.Repository
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
                 string sql = "UPDATE MotionSetting " +
-                             "SET name = @name , gobalStrength = @gobalStrength , xStrength = @xStrength , yStrength = @yStrength , zStrength = @zStrength" +
+                             "SET name = @name , gobalStrength = @gobalStrength , " +
+                             "xStrength = @xStrength , yStrength = @yStrength , zStrength = @zStrength, " +
+                             "delayTime = @delayTime" +
                              "where id=@id ";
 
                 cnn.Execute(sql, new
@@ -70,7 +72,8 @@ namespace Hosam_App.Logic.Repository
                     motionSetting.gobalStrength,
                     motionSetting.xStrength,
                     motionSetting.yStrength,
-                    motionSetting.zStrength
+                    motionSetting.zStrength,
+                    motionSetting.delayTime
                 });
             }
         }

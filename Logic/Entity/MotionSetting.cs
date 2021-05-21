@@ -14,5 +14,6 @@ namespace Hosam_App.Logic.Entity
         public int xStrength;
         public int yStrength;
         public int zStrength;
+        public int delayTime;
     }
 }

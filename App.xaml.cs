@@ -15,7 +15,7 @@ namespace Hosam_App
     /// </summary>
     public partial class App : Application
     {
-        static Timer gobalTimer = new Timer(100);
+        static Timer gobalTimer = new Timer(500);
         
         void App_Startup(object sender, StartupEventArgs e)
         {

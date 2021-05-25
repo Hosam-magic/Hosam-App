@@ -35,6 +35,7 @@ namespace Hosam_App.Logic.Repository
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
+                cnn.Open();
                 string sql = "Create Table if not exists GameData " +
                              "(id TEXT(36), " +
                              "gameName TEXT(30), " +
@@ -56,6 +57,7 @@ namespace Hosam_App.Logic.Repository
                              "delayTime INTEGER(20) ) ";
                            
                 cnn.Execute(sql2);
+                cnn.Close();
             }
         }
 
@@ -63,6 +65,7 @@ namespace Hosam_App.Logic.Repository
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
+                cnn.Open();
                 string sql = "Insert Into GameData ( id , gameName , configId) " +
                              "Select @id,@gameName,0 " +
                              "Where Not Exists " +
@@ -72,6 +75,7 @@ namespace Hosam_App.Logic.Repository
                 string id = Guid.NewGuid().ToString();
 
                 cnn.Execute(sql, new { id, gameName });
+                cnn.Close();
             }
         }
 
@@ -79,6 +83,7 @@ namespace Hosam_App.Logic.Repository
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
+                cnn.Open();
 
                 string sql = "Insert Into MotionSetting " +
                               "( id , name , gobalStrength , xStrength , yStrength , zStrength , delayTime) " +
@@ -93,6 +98,8 @@ namespace Hosam_App.Logic.Repository
                                        baseMotionSetting.yStrength,
                                        baseMotionSetting.zStrength,
                                        baseMotionSetting.delayTime });
+
+                cnn.Close();
             }
         }
     }

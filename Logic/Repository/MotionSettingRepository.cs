@@ -47,10 +47,14 @@ namespace Hosam_App.Logic.Repository
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
+                cnn.Open();
                 string sql = "select * from MotionSetting mt " +
                              "where (@id is null or id = @id) ";
-                            
-                return cnn.Query<MotionSetting>(sql , new{ id }).ToList();
+
+                List<MotionSetting> data = cnn.Query<MotionSetting>(sql, new { id }).ToList();
+                cnn.Close();
+
+                return data;
             }
         }
 
@@ -59,6 +63,7 @@ namespace Hosam_App.Logic.Repository
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
+                cnn.Open();
                 string sql = "UPDATE MotionSetting " +
                              "SET name = @name , gobalStrength = @gobalStrength , " +
                              "xStrength = @xStrength , yStrength = @yStrength , zStrength = @zStrength, " +
@@ -75,6 +80,7 @@ namespace Hosam_App.Logic.Repository
                     motionSetting.zStrength,
                     motionSetting.delayTime
                 });
+                cnn.Close();
             }
         }
 
@@ -83,10 +89,12 @@ namespace Hosam_App.Logic.Repository
         {
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
             {
+                cnn.Open();
                 string sql = "DELETE FROM MotionSetting " +
                              "where id=@id ";
 
                 cnn.Execute(sql, new{motionSetting.id,});
+                cnn.Close();
             }
         }
     }

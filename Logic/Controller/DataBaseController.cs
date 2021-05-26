@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Hosam_App.Logic.Service;
 using Hosam_App.ErrorCode;
+using System.Reflection;
 
 namespace Hosam_App.Logic.Controller
 {
@@ -13,14 +14,7 @@ namespace Hosam_App.Logic.Controller
     {
         public static ActionResult CheckDataComplete()
         {
-            try
-            {
-                return DataBaseService.CheckDataComplete();
-            }
-            catch (Exception e)
-            {
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
-            }
+            return DataBaseService.CheckDataComplete();
         }
     }
 }

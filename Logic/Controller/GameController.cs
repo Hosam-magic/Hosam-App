@@ -14,39 +14,18 @@ namespace Hosam_App.Logic.Controller
 
         public static ActionResult Initialize()
         {
-            try
-            {
-                //把遊戲執行狀態清空，避免舊資料影響程式判斷
-                return GameService.ResetAllRunningStatus();
-            }
-            catch (Exception e)
-            {
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
-            }
+            //把遊戲執行狀態清空，避免舊資料影響程式判斷
+            return GameService.ResetAllRunningStatus();
         }
 
         public static ActionResult UpdateGameStatus()
         {
-            try
-            {
-                return GameService.UpdateGameStatus();
-            }
-            catch (Exception e)
-            {
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
-            }
+            return GameService.UpdateGameStatus();
         }
 
         public static ActionResult GetData(string id)
         {
-            try
-            {
-                return GameService.GetGameData(id);
-            }
-            catch (Exception e)
-            {
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
-            }
+            return GameService.GetGameData(id);
         }
 
         public static ActionResult RunGame(string path)

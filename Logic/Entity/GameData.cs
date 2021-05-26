@@ -7,7 +7,7 @@ namespace Hosam_App.Logic.Entity
         public string id;
         public string gameName;
         public string path;
-        public string driver;
+        public string driverId;
         public string configId;   
         public MotionSetting motionSetting;
         public string lastRunTime;

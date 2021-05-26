@@ -54,6 +54,7 @@ namespace Hosam_App.Logic.Service
                     //DB顯示未執行，但有在處理程序中找到
                     if (findedProcess != null && supGame.isRunning != 1)
                     {
+                        Console.WriteLine("A");
                         //避免加入重複的項目
                         if (!startGameList.Contains(supGame))
                         {
@@ -94,7 +95,7 @@ namespace Hosam_App.Logic.Service
                     //停止相對應的區動
                     foreach (GameData stopGame in stopGameList)
                     {
-                        ActionResult result = GameDriverService.Stop(stopGame.gameName);
+                        ActionResult result = GameDriverService.Stop();
 
                         if (result.scucess == false)
                         {
@@ -112,7 +113,7 @@ namespace Hosam_App.Logic.Service
                     //起動相對應的區動
                     foreach (GameData startGame in startGameList)
                     {
-                        ActionResult result = GameDriverService.Start(startGame.gameName, 100);
+                        ActionResult result = GameDriverService.Start(startGame);
 
                         if (result.scucess == false)
                         {

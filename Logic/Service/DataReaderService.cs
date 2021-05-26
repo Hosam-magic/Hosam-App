@@ -17,7 +17,7 @@ using System.Threading;
 
 namespace Hosam_App.Logic.Service
 {
-    class GameDriverService
+    class DataReaderService
     {
         //static readonly MemoryMappedFile gameDataMmf = MemoryMappedFile.OpenExisting("GameData");
 
@@ -35,7 +35,7 @@ namespace Hosam_App.Logic.Service
                 Process.Start(@"C:\Users\johnny\source\repos\GameDataReader(64)\GameDataReader(64)\bin\x64\Debug\GameDataReader(64).exe");
                 isSidePorjectStart = true;
 
-                //將啟動資料透過mmf傳輸，發送後釋放mmf
+                //傳送起動遊戲與座椅設定
                 MmfCommand mmfCommand = new MmfCommand
                 {
                     id = Guid.NewGuid().ToString(),
@@ -54,16 +54,39 @@ namespace Hosam_App.Logic.Service
             }
         }
 
+        public static ActionResult Adjust(MotionSetting newSetting)
+        {
+            try
+            {
+                //傳送新的設定
+                MmfCommand mmfCommand = new MmfCommand
+                {
+                    id = Guid.NewGuid().ToString(),
+                    command = "adjust",
+                    motionSetting = newSetting
+                };
+                SendMsg(mmfCommand);
+
+                return new ActionResult(true);
+            }
+            catch (Exception e)
+            {
+                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+            }
+        }
+
         public static ActionResult Stop()
         {
             try
             {
+                //傳送停止訊息
                 MmfCommand mmfCommand = new MmfCommand
                 {
                     id = Guid.NewGuid().ToString(),
                     command = "stop"
                 };
                 SendMsg(mmfCommand);
+
                 isSidePorjectStart = false;
                 return new ActionResult(true);
             }
@@ -86,45 +109,7 @@ namespace Hosam_App.Logic.Service
                     bw.Write(msg); //再寫byte[]
                 }
             }
-
-            //先 delay 在釋放，避免副程式來不及讀取
         }
 
-        static ActionResult ReadActonResult()
-        {
-            int tryTime = 0;
-            MemoryMappedFile actionResultMmf = null;
-            //嘗試讀取
-            while (tryTime < 30)
-            {
-                try
-                {
-                   actionResultMmf = MemoryMappedFile.OpenExisting("ActionResult");
-                    break;
-                }
-                catch (FileNotFoundException)
-                {
-                    tryTime++;
-                    if (tryTime > 30)
-                    {
-                        return new ActionResult(false, SoftLogicErr.noResponse.getCode(), SoftLogicErr.noResponse.getMsg());
-                    }
-                }
-            }
-            using (MemoryMappedViewStream stream = actionResultMmf.CreateViewStream(0, 0))
-            {
-                using (var br = new BinaryReader(stream))
-                {
-                    //先讀取長度，再讀取内容
-                    var len = br.ReadInt32();
-                    var word = Encoding.UTF8.GetString(br.ReadBytes(len), 0, len);
-                    string jsonActionResult = word.ToString();
-                    return JsonConvert.DeserializeObject<ActionResult>(jsonActionResult);
-                }
-            }
-
-
-
-        }
     }
 }

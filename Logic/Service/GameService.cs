@@ -7,6 +7,7 @@ using Hosam_App.ErrorCode;
 using System.ComponentModel;
 using Hosam_App.Logic.Entity;
 using Hosam_App.Logic.Repository;
+using System.Reflection;
 
 namespace Hosam_App.Logic.Service
 {
@@ -26,6 +27,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
             
@@ -35,6 +38,7 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
+                
                 //讀取資料庫中所有遊戲資訊
                 List<GameData> supGameList = GameDataRepository.GetGameData(null);
 
@@ -54,7 +58,6 @@ namespace Hosam_App.Logic.Service
                     //DB顯示未執行，但有在處理程序中找到
                     if (findedProcess != null && supGame.isRunning != 1)
                     {
-                        Console.WriteLine("A");
                         //避免加入重複的項目
                         if (!startGameList.Contains(supGame))
                         {
@@ -127,6 +130,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
 
@@ -156,6 +161,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
 
@@ -172,6 +179,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
 
@@ -199,6 +208,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
             

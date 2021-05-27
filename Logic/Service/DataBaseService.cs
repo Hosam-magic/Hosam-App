@@ -9,6 +9,7 @@ using Hosam_App.ErrorCode;
 using Hosam_App.Logic.DTO;
 using Hosam_App.Logic.Repository;
 using Hosam_App.Logic.Gobal;
+using System.Reflection;
 
 namespace Hosam_App.Logic.Service
 {
@@ -44,6 +45,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog(MethodBase.GetCurrentMethod().Name+"ERR" + "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
 

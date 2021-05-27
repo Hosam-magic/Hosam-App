@@ -14,6 +14,7 @@ using System.IO;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using System.Threading;
+using System.Reflection;
 
 namespace Hosam_App.Logic.Service
 {
@@ -50,6 +51,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name+  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
         }
@@ -71,6 +74,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
         }
@@ -92,6 +97,8 @@ namespace Hosam_App.Logic.Service
             }
             catch (Exception e)
             {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
+
                 return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
             }
         }

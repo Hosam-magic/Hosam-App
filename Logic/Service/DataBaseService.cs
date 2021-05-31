@@ -47,7 +47,7 @@ namespace Hosam_App.Logic.Service
             {
                 LogService.WriteLog(MethodBase.GetCurrentMethod().Name+"ERR" + "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
 
         }

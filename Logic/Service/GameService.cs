@@ -29,7 +29,7 @@ namespace Hosam_App.Logic.Service
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
             
         }
@@ -109,7 +109,7 @@ namespace Hosam_App.Logic.Service
                 }
 
                 if (startGameList.Count > 1)
-                { return new ActionResult(false, SoftLogicErr.detactMultipleGame.getCode(), SoftLogicErr.detactMultipleGame.getMsg()); }
+                { return new ActionResult(false, SoftLogicErr.detactMultipleGame.GetCode(), SoftLogicErr.detactMultipleGame.GetMsg()); }
 
                 if (startGameList.Count == 1)
                 {
@@ -132,7 +132,7 @@ namespace Hosam_App.Logic.Service
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
 
             
@@ -148,7 +148,7 @@ namespace Hosam_App.Logic.Service
 
                 if (dataList.Count == 0 || settingList.Count == 0)
                 {
-                    return new ActionResult(false, SoftLogicErr.dataNotFound.getCode(), SoftLogicErr.dataNotFound.getMsg());
+                    return new ActionResult(false, SoftLogicErr.dataNotFound.GetCode(), SoftLogicErr.dataNotFound.GetMsg());
                 }
 
                 //更改 GameData 中的資料
@@ -163,7 +163,7 @@ namespace Hosam_App.Logic.Service
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
 
 
@@ -181,7 +181,7 @@ namespace Hosam_App.Logic.Service
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
 
         }
@@ -196,7 +196,7 @@ namespace Hosam_App.Logic.Service
                 //如果DB中沒有該路徑報錯
                 if (data.Count == 0)
                 {
-                    return new ActionResult(false, SoftLogicErr.dataNotFound.getCode(), SoftLogicErr.dataNotFound.getMsg());
+                    return new ActionResult(false, SoftLogicErr.dataNotFound.GetCode(), SoftLogicErr.dataNotFound.GetMsg());
                 }
 
                 Process.Start(path);
@@ -204,13 +204,13 @@ namespace Hosam_App.Logic.Service
             }
             catch (Win32Exception)
             {
-                return new ActionResult(false, SoftLogicErr.pathNotFound.getCode(), SoftLogicErr.pathNotFound.getMsg());
+                return new ActionResult(false, SoftLogicErr.pathNotFound.GetCode(), SoftLogicErr.pathNotFound.GetMsg());
             }
             catch (Exception e)
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
             
             

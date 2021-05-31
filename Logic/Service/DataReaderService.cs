@@ -22,19 +22,18 @@ namespace Hosam_App.Logic.Service
     {
         //static readonly MemoryMappedFile gameDataMmf = MemoryMappedFile.OpenExisting("GameData");
 
-        static bool isSidePorjectStart = false;
-
         public static ActionResult Start(GameData startGame)
         {
             try
             {
-                if (isSidePorjectStart)
+                bool a = IsDataReaderRunning();
+                if (IsDataReaderRunning())
                 {
-                    return new ActionResult(false, SoftLogicErr.alreadyStart.getCode(), SoftLogicErr.alreadyStart.getMsg());
+                    return new ActionResult(false, SoftLogicErr.alreadyStart.GetCode(), SoftLogicErr.alreadyStart.GetMsg());
                 }
                 //開啟副程式
-                Process.Start(@"C:\Users\johnny\source\repos\GameDataReader(64)\GameDataReader(64)\bin\x64\Debug\GameDataReader(64).exe");
-                isSidePorjectStart = true;
+                Process.Start(@"F:\workspace\racing-seat\GameDataReader(64)\GameDataReader(64)\bin\x64\Debug\GameDataReader(64).exe");
+                
 
                 //傳送起動遊戲與座椅設定
                 MmfCommand mmfCommand = new MmfCommand
@@ -53,7 +52,7 @@ namespace Hosam_App.Logic.Service
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name+  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
         }
 
@@ -61,6 +60,11 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
+                if (!IsDataReaderRunning())
+                {
+                    return new ActionResult(false, SoftLogicErr.notRunning.GetCode(), SoftLogicErr.notRunning.GetMsg());
+                }
+
                 //傳送新的設定
                 MmfCommand mmfCommand = new MmfCommand
                 {
@@ -76,7 +80,7 @@ namespace Hosam_App.Logic.Service
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
         }
 
@@ -92,14 +96,13 @@ namespace Hosam_App.Logic.Service
                 };
                 SendMsg(mmfCommand);
 
-                isSidePorjectStart = false;
                 return new ActionResult(true);
             }
             catch (Exception e)
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
 
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
         }
 
@@ -116,6 +119,24 @@ namespace Hosam_App.Logic.Service
                     bw.Write(msg); //再寫byte[]
                 }
             }
+        }
+
+        static bool IsDataReaderRunning()
+        {
+            string dataReaderName = "GameDataReader(64)";
+
+            List<Process> processlist = Process.GetProcesses().ToList();
+            foreach (Process p in processlist)
+            {
+                //找尋副程式名稱的執行程序
+                if (p.ProcessName == dataReaderName) 
+                {
+                    return true;
+                }
+            }
+
+            //沒有找到
+            return false;
         }
 
     }

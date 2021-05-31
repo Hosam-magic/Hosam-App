@@ -24,7 +24,7 @@ namespace Hosam_App.ErrorCode
 
         //副程式相關錯誤
         public static readonly SoftLogicErr alreadyStart = new SoftLogicErr("0101050", "sideproject already start");
-        public static readonly SoftLogicErr alreadyStop = new SoftLogicErr("0101051", "sideproject already stop");
+        public static readonly SoftLogicErr notRunning = new SoftLogicErr("0101051", "sideproject isn't running");
         public static readonly SoftLogicErr noResponse = new SoftLogicErr("0101052", "sideproject no response");
 
         private SoftLogicErr(string errorCode, string errorMsg)
@@ -34,12 +34,12 @@ namespace Hosam_App.ErrorCode
             this.errorMsg = errorMsg;
         }
 
-        public string getMsg()
+        public string GetMsg()
         {
             return errorMsg;
         }
 
-        public string getCode()
+        public string GetCode()
         {
             return errorCode;
         }

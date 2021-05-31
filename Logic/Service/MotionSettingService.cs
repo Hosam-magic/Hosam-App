@@ -24,15 +24,15 @@ namespace Hosam_App.Logic.Service
                 //因 name 設為 uk 所以 exception 訊息含有 UNIQUE 判斷為名子重複
                 if (e.Message.Contains("UNIQUE"))
                 {
-                    return new ActionResult(false, SoftLogicErr.nameAlreadyExist.getCode(), SoftLogicErr.nameAlreadyExist.getMsg());
+                    return new ActionResult(false, SoftLogicErr.nameAlreadyExist.GetCode(), SoftLogicErr.nameAlreadyExist.GetMsg());
                 }
 
-                return new ActionResult(false, SoftLogicErr.dbException.getCode(), SoftLogicErr.dbException.getMsg());
+                return new ActionResult(false, SoftLogicErr.dbException.GetCode(), SoftLogicErr.dbException.GetMsg());
             }
             catch (Exception e)
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
         }
 
@@ -46,12 +46,12 @@ namespace Hosam_App.Logic.Service
             }
             catch (SQLiteException e)
             {
-                return new ActionResult(false, SoftLogicErr.dbException.getCode(), SoftLogicErr.dbException.getMsg());
+                return new ActionResult(false, SoftLogicErr.dbException.GetCode(), SoftLogicErr.dbException.GetMsg());
             }
             catch (Exception e)
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
         }
 
@@ -68,15 +68,15 @@ namespace Hosam_App.Logic.Service
                 //因 name 設為 uk 所以 exception 訊息含有 UNIQUE 判斷為名子重複
                 if (e.Message.Contains("UNIQUE"))
                 {
-                    return new ActionResult(false, SoftLogicErr.nameAlreadyExist.getCode(), SoftLogicErr.nameAlreadyExist.getMsg());
+                    return new ActionResult(false, SoftLogicErr.nameAlreadyExist.GetCode(), SoftLogicErr.nameAlreadyExist.GetMsg());
                 }
 
-                return new ActionResult(false, SoftLogicErr.dbException.getCode(), SoftLogicErr.dbException.getMsg());
+                return new ActionResult(false, SoftLogicErr.dbException.GetCode(), SoftLogicErr.dbException.GetMsg());
             }
             catch (Exception e)
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
         }
 
@@ -90,12 +90,12 @@ namespace Hosam_App.Logic.Service
             }
             catch (SQLiteException e)
             {
-                return new ActionResult(false, SoftLogicErr.dbException.getCode(), SoftLogicErr.dbException.getMsg());
+                return new ActionResult(false, SoftLogicErr.dbException.GetCode(), SoftLogicErr.dbException.GetMsg());
             }
             catch (Exception e)
             {
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name +  "\r\n" + e.GetType() + "\r\n" + e.Message);
-                return new ActionResult(false, SoftLogicErr.unexceptErr.getCode(), SoftLogicErr.unexceptErr.getMsg());
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
             }
         }
     }

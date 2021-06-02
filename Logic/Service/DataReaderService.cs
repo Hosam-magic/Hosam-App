@@ -21,6 +21,7 @@ namespace Hosam_App.Logic.Service
     class DataReaderService
     {
         //static readonly MemoryMappedFile gameDataMmf = MemoryMappedFile.OpenExisting("GameData");
+        static MemoryMappedFile sendCommandMmf = MemoryMappedFile.CreateOrOpen("CommandMsg", 256);
 
         public static ActionResult Start(GameData startGame)
         {
@@ -33,12 +34,13 @@ namespace Hosam_App.Logic.Service
                 }
                 //開啟副程式
                 Process.Start(@"F:\workspace\racing-seat\GameDataReader(64)\GameDataReader(64)\bin\x64\Debug\GameDataReader(64).exe");
-                
+
 
                 //傳送起動遊戲與座椅設定
+                string uuid = Guid.NewGuid().ToString();
                 MmfCommand mmfCommand = new MmfCommand
                 {
-                    id = Guid.NewGuid().ToString(),
+                    mmfId = uuid,
                     command = "start",
                     gameName = startGame.gameName,
                     motionSetting = startGame.motionSetting
@@ -46,7 +48,7 @@ namespace Hosam_App.Logic.Service
                 };
                 SendMsg(mmfCommand);
 
-                return new ActionResult(true);
+                return ReadMmfAcrionResult(uuid);
             }
             catch (Exception e)
             {
@@ -66,15 +68,16 @@ namespace Hosam_App.Logic.Service
                 }
 
                 //傳送新的設定
+                string uuid = Guid.NewGuid().ToString();
                 MmfCommand mmfCommand = new MmfCommand
                 {
-                    id = Guid.NewGuid().ToString(),
+                    mmfId = uuid,
                     command = "adjust",
                     motionSetting = newSetting
                 };
                 SendMsg(mmfCommand);
 
-                return new ActionResult(true);
+                return ReadMmfAcrionResult(uuid);
             }
             catch (Exception e)
             {
@@ -89,14 +92,15 @@ namespace Hosam_App.Logic.Service
             try
             {
                 //傳送停止訊息
+                string uuid = Guid.NewGuid().ToString();
                 MmfCommand mmfCommand = new MmfCommand
                 {
-                    id = Guid.NewGuid().ToString(),
+                    mmfId = uuid,
                     command = "stop"
                 };
                 SendMsg(mmfCommand);
 
-                return new ActionResult(true);
+                return ReadMmfAcrionResult(uuid);
             }
             catch (Exception e)
             {
@@ -106,9 +110,9 @@ namespace Hosam_App.Logic.Service
             }
         }
 
-        static void SendMsg(MmfCommand mmfCommand)
+        public static void SendMsg(MmfCommand mmfCommand)
         {
-            MemoryMappedFile sendCommandMmf = MemoryMappedFile.CreateOrOpen("CommandMsg", 1024);
+            
             string jsonCommand = new JavaScriptSerializer().Serialize(mmfCommand);
             using (var stream = sendCommandMmf.CreateViewStream())
             {
@@ -137,6 +141,51 @@ namespace Hosam_App.Logic.Service
 
             //沒有找到
             return false;
+        }
+
+        static ActionResult ReadMmfAcrionResult(string mmfId)
+        {
+            DateTime start = DateTime.Now;
+
+            //如果超過6秒判斷為沒回應
+            while (DateTime.Now.Subtract(start).Seconds < 6)
+            {
+                try
+                {
+                    MemoryMappedFile sendCommandMmf = MemoryMappedFile.OpenExisting("MmfActionResult");
+
+                    using (MemoryMappedViewStream stream = sendCommandMmf.CreateViewStream(0, 0))
+                    {
+                        using (var br = new BinaryReader(stream))
+                        {
+                            //先讀取長度，再讀取内容
+                            var len = br.ReadInt32();
+                            var word = Encoding.UTF8.GetString(br.ReadBytes(len), 0, len);
+                            string jsonMmfActionResult = word.ToString();
+                            MmfActionResult result = JsonConvert.DeserializeObject<MmfActionResult>(jsonMmfActionResult);
+                            sendCommandMmf.Dispose();
+                            //確認是否讀取到指定訊息
+                            if (result.mmfId == mmfId)
+                            {
+                                return result.actionResult;
+                            }
+
+                        }
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    continue;
+                }
+                catch (Exception e)
+                {
+                    LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name + "\r\n" + e.GetType() + "\r\n" + e.Message);
+                    return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
+                }
+
+            }
+
+            return new ActionResult(false, SoftLogicErr.noResponse.GetCode(), SoftLogicErr.noResponse.GetMsg());
         }
 
     }

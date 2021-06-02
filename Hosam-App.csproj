@@ -185,6 +185,7 @@
     <Compile Include="Logic\Controller\GameController.cs" />
     <Compile Include="Logic\Controller\MotionSettingController.cs" />
     <Compile Include="Logic\DTO\ActionResult.cs" />
+    <Compile Include="Logic\DTO\MmfActionResult.cs" />
     <Compile Include="Logic\DTO\MmfCommand.cs" />
     <Compile Include="Logic\Entity\GameData.cs" />
     <Compile Include="Logic\Entity\MotionSetting.cs" />

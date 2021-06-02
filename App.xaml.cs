@@ -6,7 +6,7 @@ using System.Timers;
 using Hosam_App.Logic.Entity;
 using Hosam_App.Logic.Repository;
 using Hosam_App.Logic.DTO;
-
+using Hosam_App.Logic.Service;
 
 namespace Hosam_App
 {
@@ -39,7 +39,6 @@ namespace Hosam_App
         void GobalTimerEvent(object sender, ElapsedEventArgs e)
         {
             GameController.UpdateGameStatus();
-            
 
         }
     }

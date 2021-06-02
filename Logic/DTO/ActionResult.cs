@@ -13,6 +13,9 @@ namespace Hosam_App.Logic.DTO
         public string erroroMsg;
         public object data;
 
+        public ActionResult()
+        {}
+
         public ActionResult(bool scucess)
         {
             this.scucess = scucess;

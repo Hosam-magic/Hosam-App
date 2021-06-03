@@ -169,11 +169,14 @@ namespace Hosam_App.Logic.Service
 
         }
 
-        public static ActionResult ResetAllRunningStatus()
+        public static ActionResult Initialize()
         {
             try
             {
+                //遊戲執行狀態清空和停止還在跑的副程式
                 GameDataRepository.ResetAllRunningStatus();
+
+                StopDataReader();
 
                 return new ActionResult(true);
             }
@@ -214,6 +217,20 @@ namespace Hosam_App.Logic.Service
             }
             
             
+        }
+
+        static void StopDataReader()
+        {
+            List<Process> processlist = Process.GetProcesses().ToList();
+            foreach (Process p in processlist)
+            {
+                //找尋副程式名稱的執行程序，並把他關掉
+                if (p.ProcessName == "GameDataReader(64)" || p.ProcessName == "GameDataReader(32)")
+                {
+                    p.CloseMainWindow();
+                    p.Close();
+                }
+            }
         }
 
     }

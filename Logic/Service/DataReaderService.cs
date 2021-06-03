@@ -87,6 +87,39 @@ namespace Hosam_App.Logic.Service
             }
         }
 
+        public static ActionResult GetPhsycalData()
+        {
+            try
+            {
+                if (!IsDataReaderRunning())
+                {
+                    return new ActionResult(false, SoftLogicErr.notRunning.GetCode(), SoftLogicErr.notRunning.GetMsg());
+                }
+
+                //傳送新的設定
+                string uuid = Guid.NewGuid().ToString();
+                MmfCommand mmfCommand = new MmfCommand
+                {
+                    mmfId = uuid,
+                    command = "read"
+                };
+                SendMsg(mmfCommand);
+
+                ActionResult result = ReadMmfAcrionResult(uuid);
+
+                //因經過序列化裡面的 PhsycalData 已轉變成 string 特質，利用反序列化在做一次轉換
+                result.data = JsonConvert.DeserializeObject<PhsycalData>(result.data.ToString());
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name + "\r\n" + e.GetType() + "\r\n" + e.Message);
+
+                return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
+            }
+        }
+
         public static ActionResult Stop()
         {
             try

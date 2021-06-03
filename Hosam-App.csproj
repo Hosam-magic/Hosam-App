@@ -182,11 +182,13 @@
     </Compile>
     <Compile Include="ErrorCode\SoftLogicErr.cs" />
     <Compile Include="Logic\Controller\DataBaseController.cs" />
+    <Compile Include="Logic\Controller\DataReaderController.cs" />
     <Compile Include="Logic\Controller\GameController.cs" />
     <Compile Include="Logic\Controller\MotionSettingController.cs" />
     <Compile Include="Logic\DTO\ActionResult.cs" />
     <Compile Include="Logic\DTO\MmfActionResult.cs" />
     <Compile Include="Logic\DTO\MmfCommand.cs" />
+    <Compile Include="Logic\DTO\PhsycalData.cs" />
     <Compile Include="Logic\Entity\GameData.cs" />
     <Compile Include="Logic\Entity\MotionSetting.cs" />
     <Compile Include="Logic\Gobal\BaseData.cs" />

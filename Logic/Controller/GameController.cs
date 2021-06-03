@@ -14,8 +14,8 @@ namespace Hosam_App.Logic.Controller
 
         public static ActionResult Initialize()
         {
-            //把遊戲執行狀態清空，避免舊資料影響程式判斷
-            return GameService.ResetAllRunningStatus();
+            //把遊戲執行狀態清空，避免舊資料影響程式判斷，並停止可能卡住的副程式
+            return GameService.Initialize();
         }
 
         public static ActionResult UpdateGameStatus()

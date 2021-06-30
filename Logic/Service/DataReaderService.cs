@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Hosam_App.Logic.Gobal;
-using AssettoCorsaSharedMemory;
 using Hosam_App.Logic.Entity;
 using System.Diagnostics;
 using System.IO.MemoryMappedFiles;
@@ -20,8 +17,8 @@ namespace Hosam_App.Logic.Service
 {
     class DataReaderService
     {
-        //static readonly MemoryMappedFile gameDataMmf = MemoryMappedFile.OpenExisting("GameData");
-        static MemoryMappedFile sendCommandMmf = MemoryMappedFile.CreateOrOpen("CommandMsg", 256);
+        static MemoryMappedFile sendCommandMmf ;  
+        
 
         public static ActionResult Start(GameData startGame)
         {
@@ -46,9 +43,22 @@ namespace Hosam_App.Logic.Service
                     motionSetting = startGame.motionSetting
 
                 };
-                SendMsg(mmfCommand);
 
-                return ReadMmfAcrionResult(uuid);
+                Thread.Sleep(500);
+                SendMsg(mmfCommand);
+                //bool isSend = false;
+                //do
+                //{
+                //    if (IsDataReaderRunning())
+                //    {
+                //        Thread.Sleep(500);
+                //        SendMsg(mmfCommand);
+                //        isSend = true;
+                //    }
+                //}
+                //while (!isSend);
+
+                return ReadMmfActionResult(uuid);
             }
             catch (Exception e)
             {
@@ -77,7 +87,7 @@ namespace Hosam_App.Logic.Service
                 };
                 SendMsg(mmfCommand);
 
-                return ReadMmfAcrionResult(uuid);
+                return ReadMmfActionResult(uuid);
             }
             catch (Exception e)
             {
@@ -96,24 +106,23 @@ namespace Hosam_App.Logic.Service
                     return new ActionResult(false, SoftLogicErr.notRunning.GetCode(), SoftLogicErr.notRunning.GetMsg());
                 }
 
-                //傳送新的設定
-                string uuid = Guid.NewGuid().ToString();
-                MmfCommand mmfCommand = new MmfCommand
-                {
-                    mmfId = uuid,
-                    command = "read"
-                };
-                SendMsg(mmfCommand);
+                ActionResult result = ReadMmfActionResult();
 
-                ActionResult result = ReadMmfAcrionResult(uuid);
+                if (!result.scucess)
+                {
+                    return result;
+                }
 
                 //因經過序列化裡面的 PhsycalData 已轉變成 string 特質，利用反序列化在做一次轉換
+
                 result.data = JsonConvert.DeserializeObject<PhsycalData>(result.data.ToString());
 
                 return result;
             }
             catch (Exception e)
             {
+                int line = (new StackTrace(e, true)).GetFrame(0).GetFileLineNumber();
+                Console.WriteLine("err at "+line);
                 LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name + "\r\n" + e.GetType() + "\r\n" + e.Message);
 
                 return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
@@ -124,6 +133,7 @@ namespace Hosam_App.Logic.Service
         {
             try
             {
+                Console.WriteLine("stop");
                 //傳送停止訊息
                 string uuid = Guid.NewGuid().ToString();
                 MmfCommand mmfCommand = new MmfCommand
@@ -133,7 +143,7 @@ namespace Hosam_App.Logic.Service
                 };
                 SendMsg(mmfCommand);
 
-                return ReadMmfAcrionResult(uuid);
+                return ReadMmfActionResult(uuid);
             }
             catch (Exception e)
             {
@@ -145,7 +155,11 @@ namespace Hosam_App.Logic.Service
 
         public static void SendMsg(MmfCommand mmfCommand)
         {
-            
+            if (sendCommandMmf == null)
+            {
+                sendCommandMmf = MemoryMappedFile.CreateOrOpen("CommandMsg", 256);
+            }
+
             string jsonCommand = new JavaScriptSerializer().Serialize(mmfCommand);
             using (var stream = sendCommandMmf.CreateViewStream())
             {
@@ -176,8 +190,9 @@ namespace Hosam_App.Logic.Service
             return false;
         }
 
-        static ActionResult ReadMmfAcrionResult(string mmfId)
+        static ActionResult ReadMmfActionResult(string mmfId)
         {
+
             DateTime start = DateTime.Now;
 
             //如果超過6秒判斷為沒回應
@@ -185,9 +200,10 @@ namespace Hosam_App.Logic.Service
             {
                 try
                 {
-                    MemoryMappedFile sendCommandMmf = MemoryMappedFile.OpenExisting("MmfActionResult");
 
-                    using (MemoryMappedViewStream stream = sendCommandMmf.CreateViewStream(0, 0))
+                    MemoryMappedFile MmfActionResult = MemoryMappedFile.OpenExisting("MmfActionResult");
+                    
+                    using (MemoryMappedViewStream stream = MmfActionResult.CreateViewStream(0, 0))
                     {
                         using (var br = new BinaryReader(stream))
                         {
@@ -196,7 +212,6 @@ namespace Hosam_App.Logic.Service
                             var word = Encoding.UTF8.GetString(br.ReadBytes(len), 0, len);
                             string jsonMmfActionResult = word.ToString();
                             MmfActionResult result = JsonConvert.DeserializeObject<MmfActionResult>(jsonMmfActionResult);
-                            sendCommandMmf.Dispose();
                             //確認是否讀取到指定訊息
                             if (result.mmfId == mmfId)
                             {
@@ -212,6 +227,7 @@ namespace Hosam_App.Logic.Service
                 }
                 catch (Exception e)
                 {
+                    
                     LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name + "\r\n" + e.GetType() + "\r\n" + e.Message);
                     return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
                 }
@@ -221,5 +237,50 @@ namespace Hosam_App.Logic.Service
             return new ActionResult(false, SoftLogicErr.noResponse.GetCode(), SoftLogicErr.noResponse.GetMsg());
         }
 
+        //沒有判斷 mmfId 用於接收高更新率的物理數據
+        static ActionResult ReadMmfActionResult()
+        {
+
+            DateTime start = DateTime.Now;
+
+            //如果超過6秒判斷為沒回應
+            while (DateTime.Now.Subtract(start).Seconds < 6)
+            {
+                try
+                {
+
+                    MemoryMappedFile MmfActionResult  = MemoryMappedFile.OpenExisting("MmfActionResult");
+                  
+                    using (MemoryMappedViewStream stream = MmfActionResult.CreateViewStream(0, 0))
+                    {
+                        using (var br = new BinaryReader(stream))
+                        {
+                            //先讀取長度，再讀取内容
+                            var len = br.ReadInt32();
+                            var word = Encoding.UTF8.GetString(br.ReadBytes(len), 0, len);
+                            string jsonMmfActionResult = word.ToString();
+                            MmfActionResult result = JsonConvert.DeserializeObject<MmfActionResult>(jsonMmfActionResult);
+
+                            return result.actionResult;
+                            
+
+                        }
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    continue;
+                }
+                catch (Exception e)
+                {
+
+                    LogService.WriteLog("Err function name：" + MethodBase.GetCurrentMethod().Name + "\r\n" + e.GetType() + "\r\n" + e.Message);
+                    return new ActionResult(false, SoftLogicErr.unexceptErr.GetCode(), SoftLogicErr.unexceptErr.GetMsg());
+                }
+
+            }
+
+            return new ActionResult(false, SoftLogicErr.noResponse.GetCode(), SoftLogicErr.noResponse.GetMsg());
+        }
     }
 }

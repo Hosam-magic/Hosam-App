@@ -46,17 +46,6 @@ namespace Hosam_App.Logic.Service
 
                 Thread.Sleep(500);
                 SendMsg(mmfCommand);
-                //bool isSend = false;
-                //do
-                //{
-                //    if (IsDataReaderRunning())
-                //    {
-                //        Thread.Sleep(500);
-                //        SendMsg(mmfCommand);
-                //        isSend = true;
-                //    }
-                //}
-                //while (!isSend);
 
                 return ReadMmfActionResult(uuid);
             }

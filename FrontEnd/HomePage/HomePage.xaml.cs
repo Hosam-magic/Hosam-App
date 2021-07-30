@@ -13,27 +13,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hosam_App.Adjust.Adjust_Resource.Component
+namespace Hosam_App.FrontEnd.HomePage
 {
     /// <summary>
-    /// warringbox.xaml 的互動邏輯
+    /// HomePage.xaml 的互動邏輯
     /// </summary>
-    /// 
-
-    public partial class warringbox : UserControl
+    public partial class HomePage : Page
     {
-
-        public string content { get; set; }
-        public adjust_Ctrl adjust_Ctrl;
-        public warringbox()
+        public HomePage()
         {
-          InitializeComponent();
+            InitializeComponent();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            adjust_Ctrl.isWarring = false;
-            adjust_Ctrl.Warring();
+            System.Diagnostics.Process.Start("https://www.google.com.tw/");
         }
     }
 }

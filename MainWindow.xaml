@@ -4,16 +4,91 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:Hosam_App"
-        mc:Ignorable="d" Title="MainWindow" Height="897"
-        Width="600">
-    <Grid x:Name="viewbox" Width="600" Height="900">
-        <Viewbox >
-                <Frame x:Name="Main"
-                        Source="Login\Login_Intro.xaml"
-                        Width="600" Height="900"
-                        NavigationUIVisibility="Hidden"
-                    Loaded="Main_Loaded" />
-        </Viewbox>
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="720" Width="1280" WindowStyle="None" AllowsTransparency="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="40"/>
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0"  Grid.Row="1"  Background="#696969" >
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}" x:Key="ButtonStyle" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+
+                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Height" Value="33"/>
+                    <Setter Property="Margin" Value="0,35,0,35"/>
+                </Style>
+            </Grid.Resources>
+            <StackPanel>
+                <Button Name="HomeButton"
+                 Style="{StaticResource ButtonStyle}"
+                        >
+                    <materialDesign:PackIcon  Kind="Home"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Height="33"
+                      Width="33"/>
+                </Button>
+
+                <Button Name="GameButton"
+                 Style="{StaticResource ButtonStyle}">
+                    <materialDesign:PackIcon  Kind="ControllerClassic"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Height="33"
+                      Width="33"/>
+                </Button>
+
+                <Button Name="SettingButton"
+                 Style="{StaticResource ButtonStyle}">
+                    <materialDesign:PackIcon  Kind="Cog"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Height="33"
+                      Width="33"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="0" Background="#696969"  Grid.ColumnSpan="2">
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}" x:Key="WindowButton" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+                    <Setter Property="ToolTip" Value="MaterialDesignFloatingActionMiniLightButton"/>
+                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Width" Value="25"/>
+                    <Setter Property="Margin" Value="10,0,10,0"/>
+                </Style>
+            </Grid.Resources>
+            <StackPanel  WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal" HorizontalAlignment="Right"  >
+                <Button Name="MinimizeButton"
+                 Style="{StaticResource WindowButton}">
+                    <materialDesign:PackIcon  Kind="WindowMinimize"/>
+                </Button>
+                <Button Name="MaxmizeButton"
+                 Style="{StaticResource WindowButton}">
+                    <materialDesign:PackIcon  Kind="DockWindow"/>
+                </Button>
+                <Button Name="CloseButton"
+                 Style="{StaticResource WindowButton}">
+                    <materialDesign:PackIcon  Kind="WindowClose"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Frame Grid.Row="1"  Grid.Column="1" x:Name="test" NavigationUIVisibility="Hidden" />
+
+
     </Grid>
 </Window>

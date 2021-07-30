@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using Hosam_App.Logic.Controller;
 using System.Timers;
-using Hosam_App.Logic.Entity;
-using Hosam_App.Logic.Repository;
 using Hosam_App.Logic.DTO;
-using Hosam_App.Logic.Service;
-using Newtonsoft.Json;
-using System.Globalization;
+
 
 namespace Hosam_App
 {
@@ -27,9 +22,9 @@ namespace Hosam_App
 
             //定時執行更新
             gobalTimer.Start();
-            testTimer.Start();
+            //testTimer.Start();
             gobalTimer.Elapsed += GobalTimerEvent;
-            testTimer.Elapsed += TestTimerEvent;
+            //testTimer.Elapsed += TestTimerEvent;
 
             //測試區
 

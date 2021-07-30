@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-
-
-
+using System.Windows.Controls;
+using Hosam_App.FrontEnd;
+using Hosam_App.FrontEnd.HomePage;
 
 namespace Hosam_App
 {
@@ -15,7 +15,9 @@ namespace Hosam_App
         public MainWindow()
         {
             InitializeComponent();
-            ResizeMode = ResizeMode.NoResize;
+            MinimizeButton.Click += (s, e) => WindowState = WindowState.Minimized;
+            MaxmizeButton.Click += (s, e) => WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+            CloseButton.Click += (s, e) => Close();
 
         }
 
@@ -23,8 +25,14 @@ namespace Hosam_App
         {
 
         }
-        public void Window_Loaded(Object sender ,RoutedEventArgs e) {
+        public void Window_Loaded(Object sender ,RoutedEventArgs e) 
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
 
+            // 用xname 取得frame :
+            Frame frame = (Frame)mainWindow.FindName("test");
+            // frame 用  Navigate
+            frame.Navigate(new HomePage());
         }
 
     }

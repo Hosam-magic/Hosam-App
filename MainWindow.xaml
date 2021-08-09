@@ -20,8 +20,11 @@
             <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
+
+        <!-- 上方基礎按鈕Bar -->
         <Grid Grid.Column="0"  Grid.Row="1"  Background="#696969" >
             <Grid.Resources>
+                <!-- 按鈕樣式 -->
                 <Style TargetType="{x:Type Button}" x:Key="ButtonStyle" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
 
                     <Setter Property="BorderBrush" Value="{x:Null}"/>
@@ -29,38 +32,34 @@
                     <Setter Property="Height" Value="33"/>
                     <Setter Property="Margin" Value="0,35,0,35"/>
                 </Style>
+                <!-- icon樣式 -->
+                <Style x:Key="windowControlIcon" TargetType="materialDesign:PackIcon">
+                    <Setter Property="Height" Value="33"/>
+                    <Setter Property="Width" Value="33"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
             </Grid.Resources>
+            
+            <!-- 視窗縮小、放大、關閉按鈕 -->
             <StackPanel>
-                <Button Name="HomeButton"
-                 Style="{StaticResource ButtonStyle}"
-                        >
-                    <materialDesign:PackIcon  Kind="Home"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Height="33"
-                      Width="33"/>
+                <Button Name="HomeButton" Style="{StaticResource ButtonStyle}">
+                    <materialDesign:PackIcon  Kind="Home" Style="{StaticResource windowControlIcon}" />
                 </Button>
 
-                <Button Name="GameButton"
-                 Style="{StaticResource ButtonStyle}">
-                    <materialDesign:PackIcon  Kind="ControllerClassic"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Height="33"
-                      Width="33"/>
+                <Button Name="GameButton" Style="{StaticResource ButtonStyle}">
+                    <materialDesign:PackIcon  Kind="ControllerClassic" Style="{StaticResource windowControlIcon}"/>
                 </Button>
 
-                <Button Name="SettingButton"
-                 Style="{StaticResource ButtonStyle}">
-                    <materialDesign:PackIcon  Kind="Cog"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Height="33"
-                      Width="33"/>
+                <Button Name="SettingButton" Style="{StaticResource ButtonStyle}">
+                    <materialDesign:PackIcon  Kind="Cog" Style="{StaticResource windowControlIcon}"/>
                 </Button>
             </StackPanel>
         </Grid>
+
+        <!-- 左側SideBar -->
         <Grid Grid.Row="0" Grid.Column="0" Background="#696969"  Grid.ColumnSpan="2">
+            <!-- 按鈕樣式 -->
             <Grid.Resources>
                 <Style TargetType="{x:Type Button}" x:Key="WindowButton" BasedOn="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
                     <Setter Property="ToolTip" Value="MaterialDesignFloatingActionMiniLightButton"/>
@@ -71,6 +70,8 @@
                     <Setter Property="Margin" Value="10,0,10,0"/>
                 </Style>
             </Grid.Resources>
+
+            <!-- 主頁、遊戲庫、設定三個按鈕 -->
             <StackPanel  WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal" HorizontalAlignment="Right"  >
                 <Button Name="MinimizeButton"
                  Style="{StaticResource WindowButton}">
@@ -87,6 +88,7 @@
             </StackPanel>
         </Grid>
 
+        <!-- 主顯示區域 -->
         <Frame Grid.Row="1"  Grid.Column="1" x:Name="test" NavigationUIVisibility="Hidden" />
 
 

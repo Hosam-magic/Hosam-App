@@ -19,7 +19,7 @@ namespace Hosam_App.Logic.Repository
         public static string sqliteFullString = sqliteDbString + sqliteFolder + sqliteDbFileName;
 
         //如果傳進來的 id 是 null ，就回傳所有資料
-        public static List<GameData> GetGameData(string id, int orederBy)
+        public static List<GameData> GetGameData(string id, int sort)
         {
             
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
@@ -29,9 +29,9 @@ namespace Hosam_App.Logic.Repository
                              "Left Join MotionSetting ms on gd.configId = ms.id " +
                              "where (@id is null or gd.id = @id) " +
                              "Order By " +
-                             "Case When @orederBy = 0 then gameName End , " +
-                             "Case When @orederBy = 1 then lastRunTime End DESC ";
-                List<GameData> data = cnn.Query<GameData, MotionSetting, GameData>(sql, (gd, ms) => { gd.motionSetting = ms; return gd; }, new { id , orederBy }).ToList();
+                             "Case When @sort = 0 then gameName End , " +
+                             "Case When @sort = 1 then lastRunTime End DESC NULLS LAST";
+                List<GameData> data = cnn.Query<GameData, MotionSetting, GameData>(sql, (gd, ms) => { gd.motionSetting = ms; return gd; }, new { id , sort }).ToList();
                 cnn.Close();
 
                 return data;

@@ -16,12 +16,12 @@ namespace Hosam_App.Logic.Service
     public class GameService
     {
 
-        public static ActionResult GetGameData(string gameName , int orederBy)
+        public static ActionResult GetGameData(string gameName , int sort)
         {
             try
             {
                 //如果傳進來的 gmaeName 是 null ，就回傳所有資料
-                List<GameData> gameData = GameDataRepository.GetGameData(gameName,orederBy);
+                List<GameData> gameData = GameDataRepository.GetGameData(gameName, sort);
 
                 return new ActionResult(true, gameData);
             }

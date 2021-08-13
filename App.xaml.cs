@@ -3,7 +3,7 @@ using System.Windows;
 using Hosam_App.Logic.Controller;
 using System.Timers;
 using Hosam_App.Logic.DTO;
-
+using Microsoft.Win32;
 
 namespace Hosam_App
 {
@@ -17,6 +17,12 @@ namespace Hosam_App
 
         void App_Startup(object sender, StartupEventArgs e)
         {
+            //關閉換頁音效
+            Registry.SetValue("HKEY_CURRENT_USER\\AppEvents\\Schemes\\Apps\\Explorer\\Navigating\\.Current", "", "NULL");
+
+            //開啟換頁音效
+            //Registry.SetValue("HKEY_CURRENT_USER\\AppEvents\\Schemes\\Apps\\Explorer\\Navigating\\.Current", "", "C:\Windows\Media\Cityscape\Windows Navigation Start.wav");
+
             DataBaseController.CheckDataComplete();
             GameController.Initialize();
 

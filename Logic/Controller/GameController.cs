@@ -26,9 +26,9 @@ namespace Hosam_App.Logic.Controller
         //取得遊戲資料與其相對硬的設定黨
         // sort = 0 以 gameName 做小到大排序
         // sort = 1 以 lastRunTime 作大到小排序
-        public static ActionResult GetData(string id , int sort)
+        public static ActionResult GetData(string id ,int isFavorite , int isRunning, int sort)
         {
-            return GameService.GetGameData(id , sort);
+            return GameService.GetGameData(id , isFavorite, isRunning, sort);
         }
 
         public static ActionResult RunGame(string path)

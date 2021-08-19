@@ -16,12 +16,12 @@ namespace Hosam_App.Logic.Service
     public class GameService
     {
 
-        public static ActionResult GetGameData(string gameName , int sort)
+        public static ActionResult GetGameData(string id , int isFavorite, int isRunning, int sort)
         {
             try
             {
                 //如果傳進來的 gmaeName 是 null ，就回傳所有資料
-                List<GameData> gameData = GameDataRepository.GetGameData(gameName, sort);
+                List<GameData> gameData = GameDataRepository.GetGameData(id, isFavorite,isRunning ,sort );
 
                 return new ActionResult(true, gameData);
             }
@@ -40,7 +40,7 @@ namespace Hosam_App.Logic.Service
             {
                 
                 //讀取資料庫中所有遊戲資訊
-                List<GameData> supGameList = GameDataRepository.GetGameData(null , 0);
+                List<GameData> supGameList = GameDataRepository.GetGameData(null ,-1,-1, 0);
 
                 List<Process> processlist = Process.GetProcesses().ToList();
 
@@ -122,6 +122,7 @@ namespace Hosam_App.Logic.Service
                         {
                             return result;
                         }
+
                     }
 
                 }
@@ -143,7 +144,7 @@ namespace Hosam_App.Logic.Service
             try
             {
                 //先檢查傳入的 gameData 與 motionsetting 的 id 是否正常
-                List<GameData> dataList = GameDataRepository.GetGameData(gameData.id ,0);
+                List<GameData> dataList = GameDataRepository.GetGameData(gameData.id,-1,-1 ,0);
                 List<MotionSetting> settingList = MotionSettingRepository.GetSetting(motionSetting.id);
 
                 if (dataList.Count == 0 || settingList.Count == 0)

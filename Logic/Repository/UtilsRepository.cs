@@ -43,7 +43,8 @@ namespace Hosam_App.Logic.Repository
                              "configId TEXT(36), " +
                              "driverId TEXT(36), " +
                              "lastRunTime TEXT(40), " +
-                             "isRunning INTEGER(1))";
+                             "isRunning INTEGER(1), " +
+                             "isFavorite INTEGER(1) )";
 
                 cnn.Execute(sql);
 

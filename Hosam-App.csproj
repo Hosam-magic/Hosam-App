@@ -122,6 +122,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ErrorCode\SoftLogicErr.cs" />
+    <Compile Include="FrontEnd\Game\GameViewModel.cs" />
     <Compile Include="FrontEnd\Game\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>

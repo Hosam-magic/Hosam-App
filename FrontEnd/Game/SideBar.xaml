@@ -9,6 +9,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SideBar" Loaded="SideBarLoad">
 
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </Page.Resources>
+
     <Grid>
         <!-- 左右視窗寬度定義 -->
         <Grid.ColumnDefinitions>
@@ -63,9 +67,14 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
-            <Grid Name="playingBlock" Grid.Row="4">
+            
+            <!-- 左下角執行中的遊戲 -->
+            <Grid x:Name="playingBlock" Grid.Row="4" Visibility="{Binding IsPlayingVisible ,Mode=TwoWay, Converter={StaticResource BoolToVisConverter}  }">
                 <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Top"  Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                        Text="- Playing -" />
+                            Text="- Playing -"/>
+                
+                <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                        Text="{Binding PlayGameName ,Mode=TwoWay}" />
             </Grid>
 
 

@@ -46,14 +46,14 @@
                     Height="40" Width="40" Click="SortChange">
                 <materialDesign:PackIcon 
                                           x:Name="SideBarSortButton2" 
-                                          Kind="SortClockAscendingOutline"  
+                                          Kind="{Binding sortIcon}"  
                                           Height="40" Width="40"
                                           HorizontalAlignment="Center" VerticalAlignment="Center"
                                           />
             </Button>
             
             <!-- 中間 List -->
-            <ListBox Grid.Row="2" x:Name="SideGameList"   ItemsSource="{Binding}" >
+            <ListBox Grid.Row="2"  ItemsSource="{Binding favoriteGameList}" >
 
                 <ListBox.ItemTemplate >
                     <DataTemplate>
@@ -69,17 +69,16 @@
             </ListBox>
             
             <!-- 左下角執行中的遊戲 -->
-            <Grid x:Name="playingBlock" Grid.Row="4" Visibility="{Binding IsPlayingVisible ,Mode=TwoWay, Converter={StaticResource BoolToVisConverter}  }">
+            <Grid x:Name="playingBlock" Grid.Row="4" Visibility="{Binding isPlayingVisible , Converter={StaticResource BoolToVisConverter}  }">
                 <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Top"  Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                             Text="- Playing -"/>
                 
                 <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                        Text="{Binding PlayGameName ,Mode=TwoWay}" />
+                        Text="{Binding playGameName }" />
             </Grid>
 
 
         </Grid>
-        <Grid Grid.Column="1">
-        </Grid>
+        <Frame Grid.Row="1"  Grid.Column="1" x:Name="gameViewFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Page>

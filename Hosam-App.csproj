@@ -122,13 +122,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ErrorCode\SoftLogicErr.cs" />
-    <Compile Include="FrontEnd\Game\GameViewModel.cs" />
+    <Compile Include="FrontEnd\Game\MainPage\GameLibrary.xaml.cs">
+      <DependentUpon>GameLibrary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrontEnd\Game\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrontEnd\HomePage\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrontEnd\Model\Gmae\GameViewModel.cs" />
+    <Compile Include="FrontEnd\Model\ViewModelBase.cs" />
     <Compile Include="Logic\Controller\DataBaseController.cs" />
     <Compile Include="Logic\Controller\DataReaderController.cs" />
     <Compile Include="Logic\Controller\GameController.cs" />
@@ -146,6 +150,10 @@
     <Compile Include="Logic\Repository\UtilsRepository.cs" />
     <Compile Include="Logic\Service\DataBaseService.cs" />
     <Compile Include="Logic\Service\GameService.cs" />
+    <Page Include="FrontEnd\Game\MainPage\GameLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FrontEnd\Game\SideBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

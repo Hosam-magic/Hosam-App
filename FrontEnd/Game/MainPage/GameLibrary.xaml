@@ -23,23 +23,25 @@
 
         <!-- 中央的 GameLibrary -->
         <ItemsControl Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding gameList}">
-            <!-- 元件的排列方式 -->
+            <!-- 遊戲清單的排列方式 -->
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel></WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            
+
+            <!-- 元遊戲清的單一原件 -->
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="18,30,18,30">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="152" />
                         </Grid.ColumnDefinitions>
-                        <Button  Height="180"  Width="152" BorderThickness="0" Background="Gray" >
 
-                        </Button>
+                        <!-- 遊戲的大按鈕 -->
+                        <Button  Height="180"  Width="152" BorderThickness="0" Background="Gray" Click="NavigatToGamePage" Tag="{Binding}"/>
                         <TextBox  Text ="{Binding gameName}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
+                        <!-- 左上角最愛按鈕 -->
                         <Button Height="20"  Width="20" Background="Gray"
                             HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
                     </Grid>

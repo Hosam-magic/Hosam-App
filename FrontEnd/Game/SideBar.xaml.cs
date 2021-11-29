@@ -57,19 +57,18 @@ namespace Hosam_App.FrontEnd.Game
 
         private void RefreshFavoriteList(int sort)
         {
-            ActionResult result = GameController.GetData(null, 1, -1, sort);
+            ActionResult result = GameController.GetGameList(1, -1, sort);
             List<GameData> data = (List<GameData>)result.data;
             gameViewModel.favoriteGameList = data;
         }
 
         void ReflashTimerEvent(object sender, ElapsedEventArgs e)
         {
-            ActionResult result = GameController.GetData(null, -1, 1, 0);
+            ActionResult result = GameController.GetGameList(-1, 1, 0);
             List<GameData> dataList = (List<GameData>)result.data;
 
             try
             {
-
                 if (dataList.Count == 0)
                 {
                     gameViewModel.playGameName = null;

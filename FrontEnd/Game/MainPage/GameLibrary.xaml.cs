@@ -26,17 +26,24 @@ namespace Hosam_App.FrontEnd.Game.MainPage
         public GameLibrary()
         {
             InitializeComponent();
+            DataContext = SideBar.gameViewModel;
         }
         private void SideBarLoad(object sender, RoutedEventArgs e)
         {
-            RefreshFavoriteList(0);
+            RefreshGameList(0);
         }
 
-        private void RefreshFavoriteList(int sort)
+        private void RefreshGameList(int sort)
         {
-            ActionResult result = GameController.GetData(null, -1, -1, sort);
+            ActionResult result = GameController.GetGameList(-1, -1, sort);
             List<GameData> data = (List<GameData>)result.data;
-            GameList.ItemsSource = data;
+            SideBar.gameViewModel.gameList = data;
+        }
+
+        private void NavigatToGamePage(object sender, RoutedEventArgs e)
+        {
+            GameData gameData = ((Button)sender).Tag as GameData;
+            NavigationService.Navigate(new GamePage(gameData.id));
         }
     }
 }

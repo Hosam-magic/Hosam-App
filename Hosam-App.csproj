@@ -125,12 +125,16 @@
     <Compile Include="FrontEnd\Game\MainPage\GameLibrary.xaml.cs">
       <DependentUpon>GameLibrary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrontEnd\Game\MainPage\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FrontEnd\Game\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="FrontEnd\HomePage\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FrontEnd\Model\Gmae\GamePageViewModel.cs" />
     <Compile Include="FrontEnd\Model\Gmae\GameViewModel.cs" />
     <Compile Include="FrontEnd\Model\ViewModelBase.cs" />
     <Compile Include="Logic\Controller\DataBaseController.cs" />
@@ -151,6 +155,10 @@
     <Compile Include="Logic\Service\DataBaseService.cs" />
     <Compile Include="Logic\Service\GameService.cs" />
     <Page Include="FrontEnd\Game\MainPage\GameLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrontEnd\Game\MainPage\GamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +229,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
+    <Folder Include="FrontEnd\Game\MainPage\Image\" />
+    <Folder Include="Resources\MainPage\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FrontEnd\HomePage\Image\news.jpg">
@@ -233,16 +243,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FrontEnd\HomePage\Image\AC.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="FrontEnd\HomePage\Image\AC2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\HomePage\AssettoCorsa.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -251,6 +251,9 @@
     <Resource Include="FrontEnd\HomePage\Image\call.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FrontEnd\Image\Game\MainPage\GamePage\AssetoCorsa.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

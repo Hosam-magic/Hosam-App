@@ -1,0 +1,43 @@
+﻿<Page x:Class="Hosam_App.FrontEnd.Game.MainPage.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hosam_App.FrontEnd.Game.MainPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GamePage">
+
+    <Grid>
+        <!-- 外框定義 -->
+        <Grid.RowDefinitions >
+            <RowDefinition Height="190" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- 上方顯示框 -->
+        <Grid  Grid.Row="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="{Binding imgPath}"></ImageBrush>
+            </Grid.Background>
+            <TextBlock Background="Gray" Text="{Binding gameName}"/>
+            <Button
+                     x:Name="runGameButton"
+                     Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="185" Height="50"
+                     VerticalAlignment="Bottom"
+                     materialDesign:ButtonAssist.CornerRadius="30"
+                     Margin ="0,0,0,20 "
+                     Background="#C4C4C4"
+                     BorderThickness="0"
+                     Content="Play"
+                     Click="PlayBtn_Click"
+                     />
+            
+        </Grid>
+
+        <!-- 下方調整區 -->
+        <ScrollViewer Grid.Row="1">
+        </ScrollViewer>
+    </Grid>
+</Page>

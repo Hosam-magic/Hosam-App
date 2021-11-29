@@ -31,7 +31,7 @@ namespace Hosam_App.FrontEnd.HomePage
                 //補上如果沒有最後一個執行遊戲的狀況
 
                 //查找最後一次執行的遊戲
-                ActionResult result = GameController.GetData(null,-1,-1, 1);
+                ActionResult result = GameController.GetGameList(-1,-1, 1);
                 List<GameData> data = (List<GameData>)result.data;
                 lastRunGame = data[0];
 
@@ -70,7 +70,7 @@ namespace Hosam_App.FrontEnd.HomePage
 
         private void RunGameButton_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(lastRunGame.path))
+            if (string.IsNullOrEmpty(lastRunGame.path))
             {
                 GameController.RunGame(lastRunGame.path);
             }

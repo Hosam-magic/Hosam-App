@@ -19,7 +19,7 @@ namespace Hosam_App.Logic.Repository
         public static string sqliteFullString = sqliteDbString + sqliteFolder + sqliteDbFileName;
         
         //如果傳進來的 id 是 null ，就回傳所有資料
-        public static List<GameData> GetGameData(string id, int isFavorite, int isRunning, int sort)
+        public static List<GameData> GetGameList( int isFavorite, int isRunning, int sort)
         {
             
             using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
@@ -27,18 +27,43 @@ namespace Hosam_App.Logic.Repository
                 cnn.Open();
                 string sql = "select * from GameData gd " +
                              "Left Join MotionSetting ms on gd.configId = ms.id " +
-                             "where (@id is null or gd.id = @id) and " +
+                             "Where " +
                              "(@isFavorite is -1 or gd.isFavorite = @isFavorite) and " +
                              "(@isRunning is -1 or gd.isRunning = @isRunning) " +
                              "Order By " +
                              "Case When @sort = 0 then gameName End , " +
                              "Case When @sort = 1 then lastRunTime End DESC NULLS LAST";
-                List<GameData> data = cnn.Query<GameData, MotionSetting, GameData>(sql, (gd, ms) => { gd.motionSetting = ms; return gd; }, new { id , isFavorite, isRunning, sort }).ToList();
-                cnn.Close();
+                List<GameData> data = cnn.Query<GameData, MotionSetting, GameData>(sql, (gd, ms) => 
+                {
+                    gd.motionSetting = ms; return gd;
+                },
+                new {isFavorite, isRunning, sort }).ToList();
 
+                cnn.Close();
                 return data;
             }
         }
+
+        public static List<GameData> GetGameDataById(string id)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(sqliteFullString))
+            {
+                cnn.Open();
+                string sql = "select * from GameData gd " +
+                             "Left Join MotionSetting ms on gd.configId = ms.id " +
+                             "Where gd.id = @id";
+
+                List<GameData> data = cnn.Query<GameData, MotionSetting, GameData>( sql, (gd, ms) => 
+                {
+                    gd.motionSetting = ms; return gd;
+                },
+                new {id}).ToList();
+
+                cnn.Close();
+                return data;
+            }
+        }
+            
 
         public static List<GameData> GetGameDataByPath(string path)
         {

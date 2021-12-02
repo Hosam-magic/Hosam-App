@@ -21,7 +21,6 @@
             <Grid.Background>
                 <ImageBrush ImageSource="{Binding imgPath}"></ImageBrush>
             </Grid.Background>
-            <TextBlock Background="Gray" Text="{Binding gameName}"/>
             <Button
                      x:Name="runGameButton"
                      Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="185" Height="50"

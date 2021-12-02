@@ -16,7 +16,7 @@ namespace Hosam_App.FrontEnd.Model.Gmae
         public GamePageViewModel(GameData data)
         {
             gameName = data.gameName ;
-            imgPath = "./Image/Game/MainPage/GamePage/AssetoCorsa.jpg";
+            imgPath = "/Resources/Game/MainPage/GamePage/"+ data.gameName + ".jpg";
         }
 
         public string gameName

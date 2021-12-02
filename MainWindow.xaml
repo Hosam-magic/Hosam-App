@@ -91,7 +91,7 @@
         
 
         <!-- 主顯示區域 -->
-        <Frame Grid.Row="1"  Grid.Column="1" x:Name="test" NavigationUIVisibility="Hidden" />
+        <Frame Grid.Row="1"  Grid.Column="1" x:Name="mainFrame" NavigationUIVisibility="Hidden" />
 
     </Grid>
 </Window>

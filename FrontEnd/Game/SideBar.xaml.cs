@@ -19,8 +19,11 @@ namespace Hosam_App.FrontEnd.Game
     {
         public static GameViewModel gameViewModel;
         static Timer reflshTimer = new Timer(3000);
+
         public SideBar()
         {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            // 用xname 取得frame :
             gameViewModel = new GameViewModel ();
             InitializeComponent();
             DataContext = gameViewModel;
@@ -35,7 +38,7 @@ namespace Hosam_App.FrontEnd.Game
             reflshTimer.Start();
 
             //設定右側顯示的class
-            gameViewFrame.NavigationService.Navigate(new GameLibrary());
+            sideBarFrame.NavigationService.Navigate(new GameLibrary());
         }
 
         private void SortChange(object sender, RoutedEventArgs e)
@@ -53,6 +56,11 @@ namespace Hosam_App.FrontEnd.Game
             }
 
             RefreshFavoriteList(gameViewModel.favoriteSort);
+        }
+        void FavoriteSelectionChanged(object sender, SelectionChangedEventArgs args)
+        {
+            GameData gameData = (GameData)FavoriteList.SelectedItem;
+            sideBarFrame.NavigationService.Navigate(new GamePage(gameData.id));
         }
 
         private void RefreshFavoriteList(int sort)

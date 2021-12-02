@@ -230,7 +230,6 @@
   <ItemGroup>
     <Folder Include="Config\" />
     <Folder Include="FrontEnd\Game\MainPage\Image\" />
-    <Folder Include="Resources\MainPage\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FrontEnd\HomePage\Image\news.jpg">
@@ -253,7 +252,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FrontEnd\Image\Game\MainPage\GamePage\AssetoCorsa.jpg" />
+    <Resource Include="Resources\Game\MainPage\GamePage\AssettoCorsa.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Game\MainPage\GamePage\eurotrucks2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

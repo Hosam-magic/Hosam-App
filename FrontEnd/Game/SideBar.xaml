@@ -53,7 +53,10 @@
             </Button>
             
             <!-- 中間 List -->
-            <ListBox Grid.Row="2"  ItemsSource="{Binding favoriteGameList}" >
+            <ListBox x:Name="FavoriteList"
+                     Grid.Row="2"  
+                     SelectionChanged="FavoriteSelectionChanged" 
+                     ItemsSource="{Binding favoriteGameList}" >
 
                 <ListBox.ItemTemplate >
                     <DataTemplate>
@@ -79,6 +82,6 @@
 
 
         </Grid>
-        <Frame Grid.Row="1"  Grid.Column="1" x:Name="gameViewFrame" NavigationUIVisibility="Hidden" />
+        <Frame Grid.Row="1"  Grid.Column="1" x:Name="sideBarFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Page>

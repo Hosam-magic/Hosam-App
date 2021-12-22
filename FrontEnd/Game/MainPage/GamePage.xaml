@@ -12,7 +12,8 @@
     <Grid>
         <!-- 外框定義 -->
         <Grid.RowDefinitions >
-            <RowDefinition Height="190" />
+            <RowDefinition Height="180" />
+            <RowDefinition Height="30" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -23,20 +24,51 @@
             </Grid.Background>
             <Button
                      x:Name="runGameButton"
-                     Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="185" Height="50"
-                     VerticalAlignment="Bottom"
-                     materialDesign:ButtonAssist.CornerRadius="30"
-                     Margin ="0,0,0,20 "
-                     Background="#C4C4C4"
+                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Width="180" Height="30"
+                    VerticalAlignment="Bottom"
+                     materialDesign:ButtonAssist.CornerRadius="15"
+                     Margin ="0,0,0,10 " Background="#2FE900"
                      BorderThickness="0"
                      Content="Play"
                      Click="PlayBtn_Click"
                      />
             
         </Grid>
-
+        <!-- 中間bar -->
+        <Grid Background="#424242" Grid.Row="1">
+            <materialDesign:ColorZone Mode="Inverted" Height="30"
+                     Background="#FF424242">
+                <DockPanel>
+                    <materialDesign:PopupBox
+                            DockPanel.Dock="Right"
+                            PlacementMode="BottomAndAlignRightEdges">
+                        <ListBox>
+                            <ListBoxItem>
+                                Hello World
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                Nice Popup
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                Goodbye.
+                            </ListBoxItem>
+                        </ListBox>
+                    </materialDesign:PopupBox>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Height="25" Width="25"
+                                Style="{StaticResource MaterialDesignIconButton}"
+                                ToolTip="MaterialDesignIconButton"
+                                Background="{DynamicResource MaterialDesignTextFieldBoxBackground}">
+                            <materialDesign:PackIcon
+                                    Kind="ArrowLeft" Height="15" Width="15" Foreground="White" />
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+            </materialDesign:ColorZone>
+        </Grid>
         <!-- 下方調整區 -->
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="2">
         </ScrollViewer>
     </Grid>
 </Page>

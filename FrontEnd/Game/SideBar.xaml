@@ -23,8 +23,8 @@
         <!-- 左邊SideBar -->
         <Grid Grid.Column="0" Background="#C4C4C4" >
             <Grid.RowDefinitions >
-                <RowDefinition Height="45" />
-                <RowDefinition Height="45" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="40" />
                 <RowDefinition />
                 <RowDefinition Height="105" />
             </Grid.RowDefinitions>
@@ -33,21 +33,24 @@
             <Grid Grid.Row="0">
                 <!-- Favorite 字樣 + 底線 -->
                 <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Bottom"  Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                        Text="Favorite" />
-                <Line Stretch="Fill" VerticalAlignment="Bottom" Stroke="Black" X2="1" Margin="10,0,10,0"/>
+                        Text="Favorite"
+                        Foreground="#FF444444" />
+                <Line Stretch="Fill" VerticalAlignment="Bottom"
+                        Stroke="#FF444444" X2="1"
+                        Margin="12,0,8,-10" />
             </Grid>
 
             <!-- 左側排序按鈕 -->
 
             <Button Grid.Row="1" x:Name="SideBarSortButton" 
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                    VerticalAlignment="Center" HorizontalAlignment="Right" 
-                    BorderBrush="{x:Null}" Background="{x:Null}"
-                    Height="40" Width="40" Click="SortChange">
+                    VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                    BorderBrush="{x:Null}" Background="{x:Null}" Height="30"
+                    Width="30" Click="SortChange">
                 <materialDesign:PackIcon 
                                           x:Name="SideBarSortButton2" 
                                           Kind="{Binding sortIcon}"  
-                                          Height="40" Width="40"
+                                          Height="30" Width="30"
                                           HorizontalAlignment="Center" VerticalAlignment="Center"
                                           />
             </Button>
